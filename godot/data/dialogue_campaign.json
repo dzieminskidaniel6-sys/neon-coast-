@@ -1,0 +1,240 @@
+{
+  "scenes": {
+    "maya_opening": [
+      {
+        "speaker": "MAYA",
+        "text": "Alex. You look like you haven't slept.",
+        "choices": [
+          {
+            "text": "Leo is missing. Tell me what you know.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "maya",
+                "amount": 3
+              },
+              {
+                "type": "flag",
+                "target": "maya_told_truth"
+              }
+            ]
+          },
+          {
+            "text": "I just need the last place he was seen.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "maya",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "speaker": "MAYA",
+        "text": "The old pier. He called me after midnight. The signal broke, then I heard a second voice.",
+        "choices": [
+          {
+            "text": "We'll follow the signal together.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "maya",
+                "amount": 4
+              },
+              {
+                "type": "flag",
+                "target": "maya_joins_investigation"
+              }
+            ]
+          },
+          {
+            "text": "Stay out of this. I'll handle it.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "maya",
+                "amount": -4
+              },
+              {
+                "type": "flag",
+                "target": "maya_kept_away"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "nico_garage": [
+      {
+        "speaker": "NICO",
+        "text": "If this is about Leo, I already checked the roads. Whoever took him knew the city.",
+        "choices": [
+          {
+            "text": "Help me trace a burner phone.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "nico",
+                "amount": 4
+              },
+              {
+                "type": "flag",
+                "target": "nico_phone_help"
+              }
+            ]
+          },
+          {
+            "text": "I need a car, not a lecture.",
+            "effects": [
+              {
+                "type": "cash",
+                "amount": -50
+              },
+              {
+                "type": "flag",
+                "target": "nico_car_rented"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "vesper_market": [
+      {
+        "speaker": "VESPER",
+        "text": "Information is cheap. Reliable information is expensive.",
+        "choices": [
+          {
+            "text": "I'll trade a favour.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "vesper",
+                "amount": 5
+              },
+              {
+                "type": "flag",
+                "target": "vesper_favour_owed"
+              }
+            ]
+          },
+          {
+            "text": "Here's 200. Give me the access code.",
+            "effects": [
+              {
+                "type": "cash",
+                "amount": -200
+              },
+              {
+                "type": "flag",
+                "target": "vesper_paid"
+              }
+            ]
+          },
+          {
+            "text": "Prove you're not selling me a story.",
+            "effects": [
+              {
+                "type": "relationship",
+                "target": "vesper",
+                "amount": -2
+              },
+              {
+                "type": "flag",
+                "target": "vesper_challenged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "leo_recording": [
+      {
+        "speaker": "LEO (RECORDING)",
+        "text": "Alex, if you found this, don't trust the first version of the manifest. They changed it after the ship left.",
+        "choices": [
+          {
+            "text": "I'll get the real records.",
+            "effects": [
+              {
+                "type": "flag",
+                "target": "leo_message_heard"
+              },
+              {
+                "type": "relationship",
+                "target": "leo",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "text": "I should have come sooner.",
+            "effects": [
+              {
+                "type": "flag",
+                "target": "leo_message_heard"
+              },
+              {
+                "type": "relationship",
+                "target": "leo",
+                "amount": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "vale_confrontation": [
+      {
+        "speaker": "ADRIAN VALE",
+        "text": "You think a folder of copied files can change a city? People here need jobs. They need stability.",
+        "choices": [
+          {
+            "text": "Release everything publicly.",
+            "effects": [
+              {
+                "type": "flag",
+                "target": "choice_public_release"
+              },
+              {
+                "type": "relationship",
+                "target": "maya",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "text": "Use the evidence to force a protected deal.",
+            "effects": [
+              {
+                "type": "flag",
+                "target": "choice_protected_deal"
+              },
+              {
+                "type": "relationship",
+                "target": "vesper",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "text": "Get Leo out first. The rest can wait.",
+            "effects": [
+              {
+                "type": "flag",
+                "target": "choice_family_first"
+              },
+              {
+                "type": "relationship",
+                "target": "leo",
+                "amount": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
