@@ -2,7 +2,7 @@ extends Node3D
 
 const PLAYER_SCRIPT = preload("res://scripts/player.gd")
 
-var player: NeonPlayer
+var player
 var objective: Node3D
 var hud_label: Label
 var hint_label: Label
