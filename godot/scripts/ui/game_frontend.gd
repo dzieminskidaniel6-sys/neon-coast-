@@ -103,6 +103,7 @@ func _build_overlay() -> void:
 	info_box.add_child(_wrapped_label("A quick-witted local who helps Alex find his first lead. Maya knows more about Leo's investigation than she admits; trust can turn her into his closest partner, or push her away.", 13))
 	info_box.add_child(_spacer(2))
 	info_box.add_child(_label("Stylized coastal city  •  Day / night cycle  •  Choice-driven story", 11, Color(0.55, 0.70, 0.76)))
+	info_box.add_child(_wrapped_label("STEROWANIE  WASD • SHIFT • SPACE • E\nJ / TAB — MISJE   |   C — POSTACIE   |   ESC — PAUZA", 11))
 
 	modal_panel = _make_panel(Vector2(125, 24), Vector2(710, 492))
 	overlay.add_child(modal_panel)
@@ -180,7 +181,8 @@ func _show_missions() -> void:
 			var prerequisite := str(mission.get("requires", ""))
 			locked = not prerequisite.is_empty() and not MissionManager.completed_missions.has(prerequisite)
 			status = "DOSTĘPNA" if not locked else "ZABLOKOWANA"
-		var row := _menu_button("%s  ·  %s   [%s]" % [mission_id.to_upper(), str(mission.get("title", "MISSION")), status], func(): _select_mission(mission))
+		var mission_copy: Dictionary = mission.duplicate(true)
+		var row := _menu_button("%s  ·  %s   [%s]" % [mission_id.to_upper(), str(mission.get("title", "MISSION")), status], _select_mission.bind(mission_copy))
 		row.custom_minimum_size.y = 32
 		row.disabled = locked
 		mission_list.add_child(row)
