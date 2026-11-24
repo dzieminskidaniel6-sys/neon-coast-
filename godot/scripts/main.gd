@@ -169,12 +169,16 @@ func _build_city() -> void:
 			_add_box("Skyline_Rooftop", Vector3(x_pos, tower_height + 1.5, -121.0), Vector3(tower_width * 0.42, 3.0, 8.2), tower_color.lightened(0.08), false)
 
 func _build_detailed_building(base: Vector3, footprint: Vector2, height: float, wall_color: Color, layout_id: int) -> void:
+	# Batch every facade component into one vertex-coloured mesh per building.
+	# This keeps the city readable while avoiding hundreds of tiny draw calls.
+	var tool := SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var width := footprint.x
 	var depth := footprint.y
-	_add_box("Building_Facade", base + Vector3(0, height * 0.5, 0), Vector3(width, height, depth), wall_color, true)
-	_add_box("Building_Foundation", base + Vector3(0, 0.22, 0), Vector3(width + 0.35, 0.44, depth + 0.35), Color(0.35, 0.38, 0.36), false)
-	_add_box("Building_Roof_Slab", base + Vector3(0, height + 0.12, 0), Vector3(width + 0.45, 0.24, depth + 0.45), Color(0.28, 0.29, 0.28), false)
-	_add_box("Front_Fascia", base + Vector3(0, height - 0.28, -depth * 0.5 - 0.07), Vector3(width, 0.18, 0.16), Color(0.88, 0.79, 0.63), false)
+	_batch_box(tool, base + Vector3(0, height * 0.5, 0), Vector3(width, height, depth), wall_color)
+	_batch_box(tool, base + Vector3(0, 0.22, 0), Vector3(width + 0.35, 0.44, depth + 0.35), Color(0.35, 0.38, 0.36))
+	_batch_box(tool, base + Vector3(0, height + 0.12, 0), Vector3(width + 0.45, 0.24, depth + 0.45), Color(0.28, 0.29, 0.28))
+	_batch_box(tool, base + Vector3(0, height - 0.28, -depth * 0.5 - 0.07), Vector3(width, 0.18, 0.16), Color(0.88, 0.79, 0.63))
 
 	var window_tint := Color(0.035, 0.16, 0.21) if layout_id % 3 != 0 else Color(0.06, 0.22, 0.25)
 	var floors := maxi(1, int(height / 3.1))
@@ -185,24 +189,57 @@ func _build_detailed_building(base: Vector3, footprint: Vector2, height: float, 
 		for side in [-1.0, 1.0]:
 			var window_x := side * width * 0.24
 			var front_z := base.z - depth * 0.5 - 0.085
-			_add_box("Window_Frame", Vector3(base.x + window_x, base.y + window_y, front_z), Vector3(1.62, 1.80, 0.10), Color(0.10, 0.15, 0.17), false)
-			_add_box("Blue_Glass", Vector3(base.x + window_x, base.y + window_y, front_z - 0.065), Vector3(1.35, 1.52, 0.045), window_tint, false)
-			_add_box("Window_Sill", Vector3(base.x + window_x, base.y + window_y - 0.94, front_z - 0.04), Vector3(1.72, 0.12, 0.24), Color(0.86, 0.78, 0.66), false)
-			_add_box("Window_Mullion", Vector3(base.x + window_x, base.y + window_y, front_z - 0.095), Vector3(0.055, 1.50, 0.035), Color(0.72, 0.78, 0.74), false)
+			_batch_box(tool, Vector3(base.x + window_x, base.y + window_y, front_z), Vector3(1.62, 1.80, 0.10), Color(0.10, 0.15, 0.17))
+			_batch_box(tool, Vector3(base.x + window_x, base.y + window_y, front_z - 0.065), Vector3(1.35, 1.52, 0.045), window_tint)
+			_batch_box(tool, Vector3(base.x + window_x, base.y + window_y - 0.94, front_z - 0.04), Vector3(1.72, 0.12, 0.24), Color(0.86, 0.78, 0.66))
+			_batch_box(tool, Vector3(base.x + window_x, base.y + window_y, front_z - 0.095), Vector3(0.055, 1.50, 0.035), Color(0.72, 0.78, 0.74))
 			if floor_index == 1 and side < 0.0 and layout_id % 2 == 0:
-				_add_box("Balcony_Deck", Vector3(base.x + window_x, base.y + window_y - 0.94, front_z - 0.40), Vector3(1.95, 0.13, 0.72), Color(0.43, 0.43, 0.38), false)
-				_add_box("Balcony_Rail_Top", Vector3(base.x + window_x, base.y + window_y - 0.34, front_z - 0.73), Vector3(1.94, 0.075, 0.075), Color(0.12, 0.19, 0.21), false)
+				_batch_box(tool, Vector3(base.x + window_x, base.y + window_y - 0.94, front_z - 0.40), Vector3(1.95, 0.13, 0.72), Color(0.43, 0.43, 0.38))
+				_batch_box(tool, Vector3(base.x + window_x, base.y + window_y - 0.34, front_z - 0.73), Vector3(1.94, 0.075, 0.075), Color(0.12, 0.19, 0.21))
 				for rail_x in [-0.84, -0.42, 0.0, 0.42, 0.84]:
-					_add_box("Balcony_Rail_Post", Vector3(base.x + window_x + rail_x, base.y + window_y - 0.64, front_z - 0.73), Vector3(0.045, 0.47, 0.05), Color(0.12, 0.19, 0.21), false)
+					_batch_box(tool, Vector3(base.x + window_x + rail_x, base.y + window_y - 0.64, front_z - 0.73), Vector3(0.045, 0.47, 0.05), Color(0.12, 0.19, 0.21))
 
-	# A single side window and simple rooftop machinery finish the silhouette.
-	_add_box("Side_Window_Frame", base + Vector3(width * 0.5 + 0.075, height * 0.54, 0), Vector3(0.12, 1.55, 1.55), Color(0.10, 0.15, 0.17), false)
-	_add_box("Side_Window_Glass", base + Vector3(width * 0.5 + 0.15, height * 0.54, 0), Vector3(0.05, 1.28, 1.28), window_tint, false)
-	_add_box("Roof_Service_Unit", base + Vector3(width * 0.24, height + 0.78, depth * 0.18), Vector3(1.5, 1.05, 1.25), Color(0.60, 0.60, 0.54), false)
-	_add_box("Roof_Vent", base + Vector3(-width * 0.28, height + 0.58, depth * 0.2), Vector3(0.8, 0.55, 0.7), Color(0.16, 0.21, 0.22), false)
-
+	_batch_box(tool, base + Vector3(width * 0.5 + 0.075, height * 0.54, 0), Vector3(0.12, 1.55, 1.55), Color(0.10, 0.15, 0.17))
+	_batch_box(tool, base + Vector3(width * 0.5 + 0.15, height * 0.54, 0), Vector3(0.05, 1.28, 1.28), window_tint)
+	_batch_box(tool, base + Vector3(width * 0.24, height + 0.78, depth * 0.18), Vector3(1.5, 1.05, 1.25), Color(0.60, 0.60, 0.54))
+	_batch_box(tool, base + Vector3(-width * 0.28, height + 0.58, depth * 0.2), Vector3(0.8, 0.55, 0.7), Color(0.16, 0.21, 0.22))
 	if layout_id % 3 == 0:
-		_add_box("Facade_Sign", base + Vector3(0, 1.35, -depth * 0.5 - 0.12), Vector3(3.2, 0.55, 0.12), Color(0.05, 0.27, 0.31), false)
+		_batch_box(tool, base + Vector3(0, 1.35, -depth * 0.5 - 0.12), Vector3(3.2, 0.55, 0.12), Color(0.05, 0.27, 0.31))
+
+	var building_mesh := tool.commit()
+	var building_instance := MeshInstance3D.new()
+	building_instance.name = "Batched_Coastal_Building"
+	building_instance.mesh = building_mesh
+	var vertex_material := StandardMaterial3D.new()
+	vertex_material.vertex_color_use_as_albedo = true
+	vertex_material.roughness = 0.88
+	building_instance.material_override = vertex_material
+	add_child(building_instance)
+
+	var body := StaticBody3D.new()
+	body.name = "Building_Collision"
+	body.position = base + Vector3(0, height * 0.5, 0)
+	var collision := CollisionShape3D.new()
+	var collision_shape := BoxShape3D.new()
+	collision_shape.size = Vector3(width, height, depth)
+	collision.shape = collision_shape
+	body.add_child(collision)
+	add_child(body)
+
+func _batch_box(tool: SurfaceTool, center: Vector3, dimensions: Vector3, color: Color) -> void:
+	var half := dimensions * 0.5
+	_batch_face(tool, center, Vector3(0, 0, -1), Vector3(-half.x, -half.y, -half.z), Vector3(-half.x, half.y, -half.z), Vector3(half.x, half.y, -half.z), Vector3(half.x, -half.y, -half.z), color)
+	_batch_face(tool, center, Vector3(0, 0, 1), Vector3(half.x, -half.y, half.z), Vector3(half.x, half.y, half.z), Vector3(-half.x, half.y, half.z), Vector3(-half.x, -half.y, half.z), color)
+	_batch_face(tool, center, Vector3(-1, 0, 0), Vector3(-half.x, -half.y, half.z), Vector3(-half.x, half.y, half.z), Vector3(-half.x, half.y, -half.z), Vector3(-half.x, -half.y, -half.z), color)
+	_batch_face(tool, center, Vector3(1, 0, 0), Vector3(half.x, -half.y, -half.z), Vector3(half.x, half.y, -half.z), Vector3(half.x, half.y, half.z), Vector3(half.x, -half.y, half.z), color)
+	_batch_face(tool, center, Vector3(0, -1, 0), Vector3(-half.x, -half.y, half.z), Vector3(-half.x, -half.y, -half.z), Vector3(half.x, -half.y, -half.z), Vector3(half.x, -half.y, half.z), color)
+	_batch_face(tool, center, Vector3(0, 1, 0), Vector3(-half.x, half.y, -half.z), Vector3(-half.x, half.y, half.z), Vector3(half.x, half.y, half.z), Vector3(half.x, half.y, -half.z), color)
+
+func _batch_face(tool: SurfaceTool, center: Vector3, normal: Vector3, a: Vector3, b: Vector3, c: Vector3, d: Vector3, color: Color) -> void:
+	for vertex in [a, b, c, a, c, d]:
+		tool.set_color(color)
+		tool.set_normal(normal)
+		tool.add_vertex(center + vertex)
 
 func _build_vehicles() -> void:
 	var vehicle = VEHICLE_SCENE.instantiate()
