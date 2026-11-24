@@ -23,10 +23,12 @@ func configure(player_node: Node3D, director_node: Node) -> void:
 	campaign_director = director_node
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 30
 	_build_overlay()
 	_build_game_controls()
 	_set_game_controls_enabled(false)
+	get_tree().paused = true
 	overlay.visible = true
 
 func _input(event: InputEvent) -> void:
@@ -254,11 +256,13 @@ func _open_modal(title_text: String) -> void:
 	modal_panel.visible = true
 	modal_title.text = title_text
 	if _game_started:
+		get_tree().paused = true
 		_set_game_controls_enabled(false)
 
 func _close_modal() -> void:
 	modal_panel.visible = false
 	if _game_started:
+		get_tree().paused = false
 		overlay.visible = false
 		_set_game_controls_enabled(true)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -299,6 +303,7 @@ func _continue_game() -> void:
 
 func _start_game() -> void:
 	_game_started = true
+	get_tree().paused = false
 	overlay.visible = false
 	game_controls.visible = true
 	_set_game_controls_enabled(true)
@@ -306,6 +311,7 @@ func _start_game() -> void:
 
 func _return_to_title() -> void:
 	_game_started = false
+	get_tree().paused = true
 	modal_panel.visible = false
 	menu_panel.visible = true
 	info_panel.visible = true
@@ -321,7 +327,6 @@ func _set_game_controls_enabled(enabled: bool) -> void:
 		player.set_process_input(enabled)
 	if is_instance_valid(campaign_director):
 		campaign_director.set_process(enabled)
-		campaign_director.set_process_unhandled_input(enabled)
 		campaign_director.set_process_unhandled_input(enabled)
 
 func _save_game() -> void:
