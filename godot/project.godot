@@ -32,6 +32,8 @@ SaveManager="*res://scripts/autoload/save_manager.gd"
 DistrictManager="*res://scripts/systems/district_manager.gd"
 VehicleManager="*res://scripts/systems/vehicle_manager.gd"
 EndingManager="*res://scripts/systems/ending_manager.gd"
+QualityProfiles="*res://scripts/systems/quality_profiles.gd"
+SideActivityManager="*res://scripts/systems/side_activity_manager.gd"
 
 [physics]
 3d/default_gravity=18.0
