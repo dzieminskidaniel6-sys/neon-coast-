@@ -6,7 +6,7 @@ var player: Node3D
 var objective: Node3D
 var hud: Label
 var prompt: Label
-var minimap: Control
+var minimap
 var opening_dialogue_started := false
 var dialogue_data: Dictionary={}
 
@@ -20,6 +20,7 @@ func _ready() -> void:
 		var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(DIALOGUE_PATH))
 		if parsed is Dictionary: dialogue_data=parsed.get("scenes",{})
 	MissionManager.objective_changed.connect(_on_objective_changed)
+	MissionManager.mission_started.connect(_on_mission_started)
 	MissionManager.mission_completed.connect(_on_mission_completed)
 	if MissionManager.missions.size()>0 and MissionManager.active_mission_id.is_empty() and MissionManager.completed_missions.is_empty():
 		MissionManager.start_mission("m01")
@@ -75,8 +76,31 @@ func _update_hud() -> void:
 		if index<objectives.size(): objective_line=str(objectives[index].get("text","Continue"))
 	hud.text="NEON COAST  //  THE LOST SIGNAL\n"+title.to_upper()+"\n"+objective_line+"\n$ "+str(GameState.cash)+"   EVIDENCE "+str(GameState.evidence_count)
 
+func _on_mission_started(mission: Dictionary) -> void:
+	var district_id:=str(mission.get("district","boardwalk"))
+	DistrictManager.set_active_district(district_id)
+	_place_objective(district_id,MissionManager.active_objective_index)
+
 func _on_objective_changed(_data: Dictionary) -> void:
+	var mission:=MissionManager.get_active_mission()
+	if not mission.is_empty():
+		_place_objective(str(mission.get("district","boardwalk")),MissionManager.active_objective_index)
 	_update_hud()
+
+func _place_objective(district_id: String, objective_index: int) -> void:
+	if not is_instance_valid(objective): return
+	var base:=Vector3(5,0,48)
+	match district_id:
+		"old_quarter": base=Vector3(-28,0,0)
+		"downtown": base=Vector3(0,0,-56)
+		"canal": base=Vector3(56,0,56)
+		"harbor": base=Vector3(0,0,84)
+		"night_market": base=Vector3(-56,0,-56)
+		"industrial_belt": base=Vector3(56,0,-56)
+		"outskirts": base=Vector3(0,0,-96)
+		_: base=Vector3(5,0,48)
+	var offset:=Vector3(float(objective_index%2)*5.0,0.0,float(objective_index/2)*5.0)
+	objective.global_position=base+offset
 
 func _on_mission_completed(mission: Dictionary) -> void:
 	GameState.set_flag("last_completed_mission",str(mission.get("id","")))
