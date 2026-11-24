@@ -27,11 +27,13 @@ func _ready() -> void:
 	_visual_root = CHARACTER_FACTORY.create_alex()
 	_visual_root.name = "CharacterVisual"
 	_visual_root.scale = Vector3.ONE * 0.84
+	_visual_root.rotation.y = PI
 	add_child(_visual_root)
 
 	_camera_pivot = Node3D.new()
 	_camera_pivot.name = "CameraPivot"
 	_camera_pivot.position.y = 1.45
+	_camera_pivot.rotation.y = PI
 	add_child(_camera_pivot)
 	_spring_arm = SpringArm3D.new()
 	_spring_arm.spring_length = 6.0
