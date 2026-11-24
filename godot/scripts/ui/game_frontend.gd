@@ -333,7 +333,7 @@ func _save_game() -> void:
 	SaveManager.save_game(player)
 	modal_title.text = "ZAPISANO GRĘ"
 
-func _apply_quality(profile: int) -> void:
+func _apply_quality(profile) -> void:
 	QualityProfiles.apply_profile(profile)
 	_show_settings()
 
