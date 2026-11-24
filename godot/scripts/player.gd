@@ -58,17 +58,20 @@ func _ready() -> void:
 	camera.fov = 72.0
 	_spring_arm.add_child(camera)
 
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Start with a visible cursor; click the game window to capture it.
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	# Handle mouse input early so UI/unhandled-input routing cannot swallow camera motion.
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_camera_pivot.rotation.y -= event.relative.x * mouse_sensitivity
 		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
 		_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, deg_to_rad(-55), deg_to_rad(35))
-	if event.is_action_pressed("ui_cancel"):
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
 	var input_2d := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
