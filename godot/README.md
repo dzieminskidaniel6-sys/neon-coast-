@@ -67,3 +67,24 @@ This is a systems-and-content milestone, not a finished, runtime-verified game. 
 - `data/side_activities_v2.json` — ten side activities.
 - `data/dialogue_campaign.json` — dialogue and choice effects.
 - `data/endings.json` — five ending conditions.
+
+## Native Arch Linux desktop application
+
+A standalone Linux x86_64 export and a pacman package recipe are included:
+- [Arch packaging guide](../packaging/arch/README.md)
+- [Build script](../packaging/arch/build_arch.sh)
+- [PKGBUILD](../packaging/arch/PKGBUILD)
+
+From the repository root, install the build dependencies and matching Godot export templates, then run:
+
+```bash
+sudo pacman -S --needed base-devel git godot
+# In Godot: Editor → Manage Export Templates → install templates matching 4.7.x
+chmod +x packaging/arch/build_arch.sh
+./packaging/arch/build_arch.sh
+sudo pacman -U dist/neon-coast-*.pkg.tar.zst
+```
+
+After installation, launch it from the desktop application menu or run `neon-coast` in a terminal. Godot Editor is not required at runtime. The release build is x86_64 and uses the Compatibility/OpenGL renderer.
+
+The package recipe has been added to the repository but has not yet been executed on the target Arch installation. A successful export, package install and first launch on the Dell are still required before calling the desktop release verified.
