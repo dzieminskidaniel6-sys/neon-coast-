@@ -1,5 +1,10 @@
 # NEON COAST: The Lost Signal — Godot 4 remake
 
+## Design documentation
+
+- [Game & Story Bible](docs/GAME_BIBLE.md) — story canon, characters, 20-mission campaign, choices, endings, gameplay systems and production roadmap.
+
+
 A lightweight third-person 3D prototype designed for Intel Celeron 4205U, Intel UHD 610 and 4 GB RAM.
 
 ## Requirements
