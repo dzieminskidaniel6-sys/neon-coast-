@@ -9,6 +9,7 @@ if [ ! -d .venv ]; then
   python -m venv .venv
 fi
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
+if ! python -c "import pygame" >/dev/null 2>&1; then
+  python -m pip install -r requirements.txt
+fi
 exec python main.py
