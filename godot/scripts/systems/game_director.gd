@@ -31,7 +31,7 @@ func _process(_delta: float) -> void:
 	if not is_instance_valid(player) or not is_instance_valid(objective): return
 	var close:=player.global_position.distance_to(objective.global_position)<=4.5
 	var near_vehicle:=false
-	var vehicle_candidate: Node
+	var vehicle_candidate
 	for vehicle in get_tree().get_nodes_in_group("vehicles"):
 		if vehicle is Node3D and player.global_position.distance_to(vehicle.global_position)<=4.0:
 			near_vehicle=true
