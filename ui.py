@@ -19,7 +19,7 @@ def draw_hud(surf,player,mission,wanted,show_hint=True):
   text(surf,mission.title,(w-342,39),15,WHITE,True);text(surf,mission.description,(w-342,61),11,MUTED)
  if wanted:text(surf,"WANTED "+"★"*wanted,(w//2-70,18),18,RED,True)
  if player.vehicle:text(surf,f"{abs(int(player.vehicle.speed))} KM/H",(w-145,h-42),20,CYAN,True)
- if show_hint:text(surf,"WASD move/drive  •  E interact/car  •  SHIFT sprint  •  M map  •  F5 save  •  F9 load  •  ESC pause",(15,h-23),11,MUTED)
+ if show_hint:text(surf,"WASD move/drive  •  E talk/car  •  H heal  •  U upgrade at garage  •  SHIFT sprint  •  M map  •  F5 save  •  F9 load  •  ESC pause",(15,h-23),11,MUTED)
 def draw_minimap(surf,player,world,mission):
  size=142;w,h=surf.get_size();x=w-size-15;y=h-size-15
  mini=pygame.Surface((size,size),pygame.SRCALPHA);mini.fill((5,12,22,225));sx=size/WORLD_W;sy=size/WORLD_H
