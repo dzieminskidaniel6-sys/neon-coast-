@@ -9,6 +9,7 @@ class_name NeonPlayer
 var stamina: float = 100.0
 var _camera_pivot: Node3D
 var _spring_arm: SpringArm3D
+var _visual_root: Node3D
 
 func _ready() -> void:
 	add_to_group("player")
@@ -20,6 +21,10 @@ func _ready() -> void:
 	collision.position.y = 0.9
 	add_child(collision)
 
+	_visual_root = Node3D.new()
+	_visual_root.name = "CharacterVisual"
+	add_child(_visual_root)
+
 	var body_mesh := MeshInstance3D.new()
 	var body_shape := CapsuleMesh.new()
 	body_shape.radius = 0.37
@@ -30,7 +35,7 @@ func _ready() -> void:
 	body_mat.albedo_color = Color(0.08, 0.72, 0.78)
 	body_mat.roughness = 1.0
 	body_mesh.material_override = body_mat
-	add_child(body_mesh)
+	_visual_root.add_child(body_mesh)
 
 	var head := MeshInstance3D.new()
 	var head_mesh := SphereMesh.new()
@@ -42,7 +47,7 @@ func _ready() -> void:
 	head_mat.albedo_color = Color(0.93, 0.72, 0.57)
 	head_mat.roughness = 1.0
 	head.material_override = head_mat
-	add_child(head)
+	_visual_root.add_child(head)
 
 	_camera_pivot = Node3D.new()
 	_camera_pivot.name = "CameraPivot"
@@ -98,4 +103,4 @@ func _physics_process(delta: float) -> void:
 
 	if direction.length_squared() > 0.02:
 		var target_yaw := atan2(-direction.x, -direction.z)
-		rotation.y = lerp_angle(rotation.y, target_yaw, 9.0 * delta)
+		_visual_root.rotation.y = lerp_angle(_visual_root.rotation.y, target_yaw, 9.0 * delta)
