@@ -206,6 +206,8 @@ func _build_detailed_building(base: Vector3, footprint: Vector2, height: float, 
 	if layout_id % 3 == 0:
 		_batch_box(tool, base + Vector3(0, 1.35, -depth * 0.5 - 0.12), Vector3(3.2, 0.55, 0.12), Color(0.05, 0.27, 0.31))
 
+	tool.index()
+	tool.optimize_indices_for_cache()
 	var building_mesh := tool.commit()
 	var building_instance := MeshInstance3D.new()
 	building_instance.name = "Batched_Coastal_Building"
