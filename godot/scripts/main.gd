@@ -19,7 +19,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not is_instance_valid(player):
 		return
-	var distance := player.global_position.distance_to(objective.global_position)
+	var distance: float = player.global_position.distance_to(objective.global_position)
 	if not mission_done and distance < 3.0:
 		hint_label.text = "Press E to talk to Maya"
 	else:
