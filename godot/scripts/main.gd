@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Interaction and campaign progression are owned by GameDirector.
+	pass
 
 func _build_environment() -> void:
 	var world_env := WorldEnvironment.new()
