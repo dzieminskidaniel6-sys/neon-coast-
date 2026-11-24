@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name NeonPlayer
 
+const CHARACTER_FACTORY = preload("res://scripts/characters/character_visual_factory.gd")
+
 @export var walk_speed: float = 5.0
 @export var sprint_speed: float = 7.2
 @export var jump_velocity: float = 5.0
@@ -10,6 +12,7 @@ var stamina: float = 100.0
 var _camera_pivot: Node3D
 var _spring_arm: SpringArm3D
 var _visual_root: Node3D
+var _walk_clock := 0.0
 
 func _ready() -> void:
 	add_to_group("player")
@@ -21,33 +24,10 @@ func _ready() -> void:
 	collision.position.y = 0.9
 	add_child(collision)
 
-	_visual_root = Node3D.new()
+	_visual_root = CHARACTER_FACTORY.create_alex()
 	_visual_root.name = "CharacterVisual"
+	_visual_root.scale = Vector3.ONE * 0.84
 	add_child(_visual_root)
-
-	var body_mesh := MeshInstance3D.new()
-	var body_shape := CapsuleMesh.new()
-	body_shape.radius = 0.37
-	body_shape.height = 1.72
-	body_mesh.mesh = body_shape
-	body_mesh.position.y = 0.9
-	var body_mat := StandardMaterial3D.new()
-	body_mat.albedo_color = Color(0.08, 0.72, 0.78)
-	body_mat.roughness = 1.0
-	body_mesh.material_override = body_mat
-	_visual_root.add_child(body_mesh)
-
-	var head := MeshInstance3D.new()
-	var head_mesh := SphereMesh.new()
-	head_mesh.radius = 0.22
-	head_mesh.height = 0.44
-	head.mesh = head_mesh
-	head.position = Vector3(0, 1.88, 0)
-	var head_mat := StandardMaterial3D.new()
-	head_mat.albedo_color = Color(0.93, 0.72, 0.57)
-	head_mat.roughness = 1.0
-	head.material_override = head_mat
-	_visual_root.add_child(head)
 
 	_camera_pivot = Node3D.new()
 	_camera_pivot.name = "CameraPivot"
@@ -63,11 +43,9 @@ func _ready() -> void:
 	camera.fov = 72.0
 	_spring_arm.add_child(camera)
 
-	# Start with a visible cursor; click the game window to capture it.
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _input(event: InputEvent) -> void:
-	# Handle mouse input early so UI/unhandled-input routing cannot swallow camera motion.
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		_camera_pivot.rotation.y -= event.relative.x * mouse_sensitivity
 		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
@@ -104,3 +82,7 @@ func _physics_process(delta: float) -> void:
 	if direction.length_squared() > 0.02:
 		var target_yaw := atan2(-direction.x, -direction.z)
 		_visual_root.rotation.y = lerp_angle(_visual_root.rotation.y, target_yaw, 9.0 * delta)
+		_walk_clock += delta * (13.0 if moving_fast else 8.0)
+		_visual_root.position.y = sin(_walk_clock) * 0.025
+	else:
+		_visual_root.position.y = move_toward(_visual_root.position.y, 0.0, delta * 0.12)
