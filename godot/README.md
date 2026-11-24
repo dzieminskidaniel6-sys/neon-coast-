@@ -12,7 +12,7 @@ A lightweight third-person 3D prototype designed for Intel Celeron 4205U, Intel 
 
 ```bash
 sudo pacman -Syu
-sudo pacman -S godot mesa vulkan-intel
+sudo pacman -S godot mesa
 ```
 
 The project uses Godot's **Compatibility** renderer (OpenGL), not Forward+.
