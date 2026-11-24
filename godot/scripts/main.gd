@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 		hint_label.text = "WASD move  |  SHIFT sprint  |  SPACE jump  |  E interact  |  CLICK capture mouse  |  ESC release"
 	var phase := fposmod(day_clock / DAY_LENGTH_SECONDS, 1.0)
 	var hour := int(phase * 24.0)
-	hud_label.text = "NEON COAST  //  THE LOST SIGNAL\nDISTRICT 01  •  BOARDWALK\n" + ("MAYA FOUND" if mission_done else mission_text) + "     " + ("%02d:00" % hour) + "\nSTAMINA  " + str(int(player.stamina)) + "%"
+	hud_label.text = "NEON COAST  //  THE LOST SIGNAL\n" + DistrictManager.get_district_name(GameState.current_district).to_upper() + "     " + ("%02d:00" % hour) + "\nSTAMINA  " + str(int(player.stamina)) + "%"
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Interaction and campaign progression are owned by GameDirector.
