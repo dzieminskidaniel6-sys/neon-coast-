@@ -27,6 +27,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python main.py
 ```
+Or, after downloading the repository, launch with: bash run_game.sh
+
 If the folder name differs, change into the folder containing main.py. For each new terminal session:
 ```bash
 cd /path/to/neon-coast-
