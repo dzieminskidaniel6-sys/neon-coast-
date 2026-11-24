@@ -8,7 +8,7 @@ from story import INTRO,SCENES,ENDING
 from ui import draw_hud,draw_minimap,draw_pause,draw_dialogue,draw_title,text
 def main():
  pygame.init(); screen=pygame.display.set_mode((WIDTH,HEIGHT),pygame.RESIZABLE); pygame.display.set_caption(TITLE); clock=pygame.time.Clock()
- world=World(); player=Player(430,430); missions=MissionManager(); cars=[Vehicle(600+i*135,390+(i%2)*30,traffic=True) for i in range(12)]; police=[]
+ world=World(); player=Player(430,245); missions=MissionManager(); cars=[Vehicle(600+i*135,245,traffic=True) for i in range(12)]; police=[]
  wanted=0; show_map=True; paused=False; started=False; dialogue=list(INTRO); dialogue_index=0; toast=""; toast_timer=0; running=True
  def camera(x,y): return int(x-player.x+screen.get_width()/2),int(y-player.y+screen.get_height()/2)
  while running:
@@ -50,7 +50,7 @@ def main():
     if math.dist((cop.x,cop.y),(player.x,player.y))<32: player.hp=max(0,player.hp-18*dt)
    if toast_timer>0: toast_timer-=dt
    if player.hp<=0:
-    player.hp=100; player.x,player.y=430,430; player.vehicle=None; wanted=0; police.clear(); toast="YOU GOT AWAY — lay low for a moment"; toast_timer=4
+    player.hp=100; player.x,player.y=430,245; player.vehicle=None; wanted=0; police.clear(); toast="YOU GOT AWAY — lay low for a moment"; toast_timer=4
   screen.fill(BG); world.draw(screen,camera); mission=missions.current
   if mission:
    mx,my=camera(*mission.target); pygame.draw.circle(screen,(255,205,92),(mx,my),36,3); pygame.draw.circle(screen,(255,205,92),(mx,my),9)
