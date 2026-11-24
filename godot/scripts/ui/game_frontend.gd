@@ -12,6 +12,7 @@ var info_panel: PanelContainer
 var modal_panel: PanelContainer
 var modal_title: Label
 var modal_body: VBoxContainer
+var continue_button: Button
 var game_controls: Control
 var mission_list: VBoxContainer
 var mission_detail: Label
@@ -77,7 +78,7 @@ func _build_overlay() -> void:
 	menu_box.add_child(_label("A BROTHER. A SECRET. A CITY THAT REMEMBERS.", 12, Color(0.94, 0.72, 0.48)))
 	menu_box.add_child(_spacer(6))
 	menu_box.add_child(_menu_button("NOWA GRA", _start_new_game, true))
-	var continue_button := _menu_button("KONTYNUUJ", _continue_game)
+	continue_button = _menu_button("KONTYNUUJ", _continue_game)
 	continue_button.disabled = not FileAccess.file_exists(SAVE_PATH)
 	if continue_button.disabled:
 		continue_button.text = "KONTYNUUJ  —  BRAK ZAPISU"
@@ -332,8 +333,13 @@ func _set_game_controls_enabled(enabled: bool) -> void:
 		campaign_director.set_process_unhandled_input(enabled)
 
 func _save_game() -> void:
-	SaveManager.save_game(player)
-	modal_title.text = "ZAPISANO GRĘ"
+	var saved := SaveManager.save_game(player)
+	if saved:
+		continue_button.disabled = false
+		continue_button.text = "KONTYNUUJ"
+		modal_title.text = "ZAPISANO GRĘ"
+	else:
+		modal_title.text = "NIE UDAŁO SIĘ ZAPISAĆ"
 
 func _apply_quality(profile) -> void:
 	QualityProfiles.apply_profile(profile)
