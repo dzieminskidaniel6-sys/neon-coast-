@@ -6,7 +6,7 @@ pkgdesc="NEON COAST: The Lost Signal — native Linux story adventure"
 arch=('x86_64')
 url="https://github.com/dzieminskidaniel6-sys/neon-coast-"
 license=('custom')
-depends=('glibc' 'gcc-libs' 'libglvnd' 'libx11' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'mesa')
+depends=('glibc' 'gcc-libs' 'libglvnd' 'libx11' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'libxkbcommon' 'mesa' 'alsa-lib' 'libpulse' 'fontconfig' 'freetype2')
 makedepends=('godot')
 source=("git+https://github.com/dzieminskidaniel6-sys/neon-coast-.git"
         "neon-coast.desktop"
