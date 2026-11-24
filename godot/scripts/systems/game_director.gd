@@ -49,29 +49,74 @@ func _process(_delta: float) -> void:
 			MissionManager.advance_objective()
 
 func _build_ui() -> void:
-	var layer:=CanvasLayer.new()
-	layer.name="CampaignUI"
+	var layer := CanvasLayer.new()
+	layer.name = "CampaignUI"
+	layer.layer = 5
 	add_child(layer)
-	hud=Label.new()
-	hud.position=Vector2(18,105)
-	hud.add_theme_font_size_override("font_size",14)
-	hud.add_theme_color_override("font_color",Color(0.82,0.94,1.0))
-	layer.add_child(hud)
-	prompt=Label.new()
-	prompt.anchor_left=0.5
-	prompt.anchor_right=0.5
-	prompt.anchor_top=1.0
-	prompt.anchor_bottom=1.0
-	prompt.position=Vector2(-85,-78)
-	prompt.add_theme_font_size_override("font_size",16)
-	prompt.add_theme_color_override("font_color",Color(1.0,0.82,0.48))
-	layer.add_child(prompt)
-	minimap=MINIMAP_SCRIPT.new()
-	minimap.position=Vector2(770,12)
-	minimap.size=Vector2(176,176)
-	minimap.tracked_player=player
-	minimap.tracked_objective=objective
-	layer.add_child(minimap)
+
+	var hud_frame := PanelContainer.new()
+	hud_frame.position = Vector2(14, 12)
+	hud_frame.size = Vector2(450, 96)
+	var hud_style := StyleBoxFlat.new()
+	hud_style.bg_color = Color(0.018, 0.045, 0.068, 0.88)
+	hud_style.border_color = Color(0.10, 0.50, 0.57, 0.8)
+	hud_style.set_border_width_all(1)
+	hud_style.set_corner_radius_all(8)
+	hud_frame.add_theme_stylebox_override("panel", hud_style)
+	layer.add_child(hud_frame)
+	var hud_margin := MarginContainer.new()
+	hud_margin.add_theme_constant_override("margin_left", 12)
+	hud_margin.add_theme_constant_override("margin_top", 7)
+	hud_margin.add_theme_constant_override("margin_right", 12)
+	hud_margin.add_theme_constant_override("margin_bottom", 7)
+	hud_frame.add_child(hud_margin)
+	hud = Label.new()
+	hud.add_theme_font_size_override("font_size", 13)
+	hud.add_theme_color_override("font_color", Color(0.84, 0.94, 0.97))
+	hud.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hud_margin.add_child(hud)
+
+	var prompt_frame := PanelContainer.new()
+	prompt_frame.position = Vector2(305, 476)
+	prompt_frame.size = Vector2(350, 44)
+	var prompt_style := StyleBoxFlat.new()
+	prompt_style.bg_color = Color(0.018, 0.045, 0.068, 0.88)
+	prompt_style.border_color = Color(0.62, 0.43, 0.23, 0.9)
+	prompt_style.set_border_width_all(1)
+	prompt_style.set_corner_radius_all(8)
+	prompt_frame.add_theme_stylebox_override("panel", prompt_style)
+	layer.add_child(prompt_frame)
+	prompt = Label.new()
+	prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	prompt.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	prompt.add_theme_font_size_override("font_size", 14)
+	prompt.add_theme_color_override("font_color", Color(1.0, 0.82, 0.54))
+	prompt_frame.add_child(prompt)
+
+	var map_frame := PanelContainer.new()
+	map_frame.position = Vector2(764, 6)
+	map_frame.size = Vector2(188, 188)
+	var map_style := StyleBoxFlat.new()
+	map_style.bg_color = Color(0.018, 0.045, 0.068, 0.94)
+	map_style.border_color = Color(0.10, 0.50, 0.57, 0.9)
+	map_style.set_border_width_all(1)
+	map_style.set_corner_radius_all(10)
+	map_frame.add_theme_stylebox_override("panel", map_style)
+	layer.add_child(map_frame)
+	var map_margin := MarginContainer.new()
+	map_margin.add_theme_constant_override("margin_left", 5)
+	map_margin.add_theme_constant_override("margin_top", 5)
+	map_margin.add_theme_constant_override("margin_right", 5)
+	map_margin.add_theme_constant_override("margin_bottom", 5)
+	map_frame.add_child(map_margin)
+	minimap = MINIMAP_SCRIPT.new()
+	minimap.custom_minimum_size = Vector2(176, 176)
+	minimap.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	minimap.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	minimap.tracked_player = player
+	minimap.tracked_objective = objective
+	map_margin.add_child(minimap)
+
 	add_child(DIALOGUE_PANEL_SCRIPT.new())
 
 func _update_hud() -> void:
