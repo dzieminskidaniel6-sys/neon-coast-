@@ -2,7 +2,7 @@ extends Node3D
 
 const PLAYER_SCRIPT = preload("res://scripts/player.gd")
 const CITY_HALF_SIZE := 105.0
-const DAY_LENGTH_SECONDS := 240.0
+const DAY_LENGTH_SECONDS := 480.0
 
 var player
 var objective: Node3D
@@ -10,7 +10,7 @@ var hud_label: Label
 var hint_label: Label
 var world_environment: Environment
 var sun: DirectionalLight3D
-var day_clock := 60.0
+var day_clock := 360.0
 var mission_done := false
 var dialogue_text := ""
 var mission_text := "Find Maya near the boardwalk diner"
@@ -52,6 +52,13 @@ func _build_environment() -> void:
 	world_environment.background_mode = Environment.BG_COLOR
 	world_environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	world_environment.ambient_light_energy = 0.7
+	# Lightweight distance haze: no volumetric fog or post-processing.
+	world_environment.fog_enabled = true
+	world_environment.fog_mode = Environment.FOG_MODE_DEPTH
+	world_environment.fog_depth_begin = 35.0
+	world_environment.fog_depth_end = 185.0
+	world_environment.fog_density = 0.012
+	world_environment.fog_sun_scatter = 0.18
 	world_env.environment = world_environment
 	add_child(world_env)
 	sun = DirectionalLight3D.new()
@@ -63,12 +70,23 @@ func _build_environment() -> void:
 func _update_day_night(delta: float) -> void:
 	day_clock = fposmod(day_clock + delta, DAY_LENGTH_SECONDS)
 	var phase := day_clock / DAY_LENGTH_SECONDS
-	var daylight := clampf(sin(phase * TAU) * 0.5 + 0.5, 0.08, 1.0)
-	world_environment.background_color = Color(0.018, 0.025, 0.075).lerp(Color(0.34, 0.53, 0.69), daylight)
-	world_environment.ambient_light_color = Color(0.13, 0.17, 0.34).lerp(Color(0.66, 0.69, 0.76), daylight)
-	world_environment.ambient_light_energy = 0.28 + daylight * 0.52
+	# Solar noon at 12:00, sunset at 18:00, sunrise at 06:00.
+	var sun_height := sin((phase - 0.25) * TAU)
+	var daylight := clampf(sun_height * 0.5 + 0.5, 0.08, 1.0)
+	var dusk := 1.0 - clampf(abs(daylight - 0.5) * 2.0, 0.0, 1.0)
+	var night_sky := Color(0.012, 0.022, 0.065)
+	var day_sky := Color(0.31, 0.48, 0.68)
+	var sunset_sky := Color(0.92, 0.34, 0.20)
+	var base_sky: Color = night_sky.lerp(day_sky, daylight)
+	world_environment.background_color = base_sky.lerp(sunset_sky, dusk * 0.88)
+	world_environment.ambient_light_color = Color(0.12, 0.16, 0.30).lerp(Color(0.72, 0.62, 0.56), daylight)
+	world_environment.ambient_light_color = world_environment.ambient_light_color.lerp(Color(0.88, 0.39, 0.25), dusk * 0.55)
+	world_environment.ambient_light_energy = 0.25 + daylight * 0.48
+	world_environment.fog_light_color = Color(0.12, 0.16, 0.30).lerp(Color(0.88, 0.43, 0.30), dusk)
+	world_environment.fog_density = 0.008 + dusk * 0.006
+	sun.light_color = Color(1.0, 0.78, 0.58).lerp(Color(1.0, 0.94, 0.82), daylight)
 	sun.light_energy = daylight * 0.78
-	sun.rotation_degrees = Vector3(-25.0 + sin(phase * TAU) * 48.0, -28.0, 0.0)
+	sun.rotation_degrees = Vector3(-8.0 + sun_height * 55.0, -28.0, 0.0)
 
 func _build_city() -> void:
 	_add_box("Ground", Vector3(0, -0.6, 0), Vector3(CITY_HALF_SIZE * 2.0, 1, CITY_HALF_SIZE * 2.0), Color(0.12, 0.19, 0.19), true)
@@ -102,9 +120,20 @@ func _build_city() -> void:
 	_add_box("ParkedCar_Blue", Vector3(7, 0.9, 52), Vector3(2.1, 1.2, 4.0), Color(0.12, 0.38, 0.72), false)
 	for x in [-18.0, -12.0, 12.0, 18.0]:
 		_add_tree(Vector3(x, 0.0, 61.0), 0.8)
-	for i in range(-3, 4):
+	for i in range(-6, 7):
 		_add_street_lamp(Vector3(6.2, 0.0, i * 28.0 + 10.0))
 		_add_street_lamp(Vector3(i * 28.0 + 10.0, 0.0, -6.2))
+
+	# Distant low-poly skyline: silhouettes create a broad coastal-city horizon cheaply.
+	var skyline_heights := [28.0, 42.0, 34.0, 58.0, 46.0, 72.0, 39.0, 62.0, 31.0, 51.0, 37.0, 66.0, 29.0]
+	for i in range(skyline_heights.size()):
+		var x_pos := (float(i) - 6.0) * 17.0
+		var tower_height: float = skyline_heights[i]
+		var tower_width := 10.0 if i % 3 == 0 else 13.0
+		var tower_color := Color(0.12, 0.15, 0.23).lerp(Color(0.34, 0.19, 0.20), float(i % 4) / 5.0)
+		_add_box("Distant_Skyline", Vector3(x_pos, tower_height * 0.5, -116.0), Vector3(tower_width, tower_height, 9.0), tower_color, false)
+		if i % 3 == 1:
+			_add_box("Skyline_Rooftop", Vector3(x_pos, tower_height + 1.5, -116.0), Vector3(tower_width * 0.42, 3.0, 9.2), tower_color.lightened(0.08), false)
 
 func _build_npcs() -> void:
 	_create_npc("Maya", Vector3(5, 0, 48), Color(0.72, 0.18, 0.42), Color(0.88, 0.66, 0.52), true)
