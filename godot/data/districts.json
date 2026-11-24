@@ -1,0 +1,121 @@
+{
+  "districts": {
+    "boardwalk": {
+      "name": "Boardwalk",
+      "identity": "Tourist coast, diner lights, old pier and public beach.",
+      "landmarks": [
+        "Maya's Diner",
+        "Old Pier",
+        "Ferris Wheel",
+        "Lifeguard Station"
+      ],
+      "activities": [
+        "coastline_sprint",
+        "the_long_way_home"
+      ],
+      "ambient": "Bright mornings, busy evenings, quiet after midnight.",
+      "streaming_radius": 130
+    },
+    "old_quarter": {
+      "name": "Old Quarter",
+      "identity": "Dense low-rise streets, repair shops, family businesses and narrow alleys.",
+      "landmarks": [
+        "Nico's Garage",
+        "Radio Repair Shop",
+        "Clock Square"
+      ],
+      "activities": [
+        "parts_run",
+        "one_last_tune"
+      ],
+      "ambient": "Warm shop lights, local radio, close pedestrian spaces.",
+      "streaming_radius": 115
+    },
+    "downtown": {
+      "name": "Downtown",
+      "identity": "Glass towers, civic buildings, rooftop routes and corporate plazas.",
+      "landmarks": [
+        "Vale Tower",
+        "Civic Archive",
+        "Rooftop Lookout"
+      ],
+      "activities": [
+        "last_delivery"
+      ],
+      "ambient": "Traffic hum, neon signage and distant sirens.",
+      "streaming_radius": 145
+    },
+    "harbor": {
+      "name": "Harbor",
+      "identity": "Container yards, piers, cranes, warehouses and restricted roads.",
+      "landmarks": [
+        "Warehouse 14",
+        "Control Relay",
+        "Public Pier"
+      ],
+      "activities": [
+        "night_shift",
+        "deep_storage"
+      ],
+      "ambient": "Foggy dawns, sodium lamps, gulls and industrial machinery.",
+      "streaming_radius": 150
+    },
+    "night_market": {
+      "name": "Night Market",
+      "identity": "Covered stalls, music venues, food alleys and informal information networks.",
+      "landmarks": [
+        "Vesper's Arcade",
+        "Lantern Lane",
+        "Closed Cinema"
+      ],
+      "activities": [
+        "information_has_a_price",
+        "loose_ends"
+      ],
+      "ambient": "Dense colour and sound; keep crowds as impostors or pooled low-cost agents.",
+      "streaming_radius": 100
+    },
+    "industrial_belt": {
+      "name": "Industrial Belt",
+      "identity": "Repair depots, scrap yards, service roads and power infrastructure.",
+      "landmarks": [
+        "Relay Yard",
+        "Scrap Exchange",
+        "Freight Underpass"
+      ],
+      "activities": [
+        "scrap_value"
+      ],
+      "ambient": "Large silhouettes, long sightlines, few active NPCs.",
+      "streaming_radius": 155
+    },
+    "canal": {
+      "name": "Canal District",
+      "identity": "Quiet waterside paths, footbridges, apartments and community gardens.",
+      "landmarks": [
+        "Canal Lock",
+        "Footbridge",
+        "Boathouse"
+      ],
+      "activities": [
+        "quiet_water"
+      ],
+      "ambient": "Calm daytime routes and reflective night lighting.",
+      "streaming_radius": 110
+    },
+    "outskirts": {
+      "name": "Outskirts",
+      "identity": "Abandoned service facilities, coastal road and scrubland beyond the city.",
+      "landmarks": [
+        "Service Station",
+        "Old Signal Mast",
+        "Hill Overlook"
+      ],
+      "activities": [
+        "brothers_trail"
+      ],
+      "ambient": "Sparse geometry, wide vistas, very low NPC density.",
+      "streaming_radius": 170
+    }
+  }
+}
