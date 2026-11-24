@@ -86,17 +86,7 @@ func _update_day_night(delta: float) -> void:
 func _build_city() -> void:
 	# Base ground, streets and sidewalks.
 	_add_box("City_Ground", Vector3(0, -0.62, 0), Vector3(CITY_HALF_SIZE * 2.0, 1.0, CITY_HALF_SIZE * 2.0), Color(0.34, 0.38, 0.34), true)
-	for i in range(-3, 4):
-		var road_offset := float(i) * 28.0
-		_add_box("Coastal_Road_Vertical", Vector3(road_offset, -0.08, 0), Vector3(8.8, 0.16, CITY_HALF_SIZE * 2.0), Color(0.075, 0.095, 0.12), false)
-		_add_box("Coastal_Road_Horizontal", Vector3(0, -0.075, road_offset), Vector3(CITY_HALF_SIZE * 2.0, 0.15, 8.8), Color(0.075, 0.095, 0.12), false)
-		for side in [-1.0, 1.0]:
-			_add_box("Sidewalk_Vertical", Vector3(road_offset + side * 5.25, 0.0, 0), Vector3(1.6, 0.20, CITY_HALF_SIZE * 2.0), Color(0.60, 0.59, 0.53), false)
-			_add_box("Sidewalk_Horizontal", Vector3(0, 0.0, road_offset + side * 5.25), Vector3(CITY_HALF_SIZE * 2.0, 0.20, 1.6), Color(0.60, 0.59, 0.53), false)
-		for dash in range(-4, 5):
-			var along := float(dash) * 23.0
-			_add_box("Road_Dash_V", Vector3(road_offset, 0.015, along), Vector3(0.12, 0.025, 3.4), Color(0.80, 0.77, 0.62), false)
-			_add_box("Road_Dash_H", Vector3(along, 0.015, road_offset), Vector3(3.4, 0.025, 0.12), Color(0.80, 0.77, 0.62), false)
+	_build_road_network()
 
 	# Warm contemporary coastal architecture with different rooflines and facade colours.
 	var palette: Array[Color] = [
@@ -167,6 +157,33 @@ func _build_city() -> void:
 		_add_box("Distant_Skyline", Vector3(x_pos, tower_height * 0.5, -121.0), Vector3(tower_width, tower_height, 8.0), tower_color, false)
 		if i % 3 == 1:
 			_add_box("Skyline_Rooftop", Vector3(x_pos, tower_height + 1.5, -121.0), Vector3(tower_width * 0.42, 3.0, 8.2), tower_color.lightened(0.08), false)
+
+
+func _build_road_network() -> void:
+	# One indexed mesh for the complete road grid, sidewalks and lane markings.
+	var tool := SurfaceTool.new()
+	tool.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in range(-3, 4):
+		var road_offset := float(i) * 28.0
+		_batch_box(tool, Vector3(road_offset, -0.08, 0), Vector3(8.8, 0.16, CITY_HALF_SIZE * 2.0), Color(0.075, 0.095, 0.12))
+		_batch_box(tool, Vector3(0, -0.075, road_offset), Vector3(CITY_HALF_SIZE * 2.0, 0.15, 8.8), Color(0.075, 0.095, 0.12))
+		for side in [-1.0, 1.0]:
+			_batch_box(tool, Vector3(road_offset + side * 5.25, 0.0, 0), Vector3(1.6, 0.20, CITY_HALF_SIZE * 2.0), Color(0.60, 0.59, 0.53))
+			_batch_box(tool, Vector3(0, 0.0, road_offset + side * 5.25), Vector3(CITY_HALF_SIZE * 2.0, 0.20, 1.6), Color(0.60, 0.59, 0.53))
+		for dash in range(-4, 5):
+			var along := float(dash) * 23.0
+			_batch_box(tool, Vector3(road_offset, 0.015, along), Vector3(0.12, 0.025, 3.4), Color(0.80, 0.77, 0.62))
+			_batch_box(tool, Vector3(along, 0.015, road_offset), Vector3(3.4, 0.025, 0.12), Color(0.80, 0.77, 0.62))
+	tool.index()
+	tool.optimize_indices_for_cache()
+	var road_instance := MeshInstance3D.new()
+	road_instance.name = "Batched_Roads_Sidewalks_Markings"
+	road_instance.mesh = tool.commit()
+	var road_material := StandardMaterial3D.new()
+	road_material.vertex_color_use_as_albedo = true
+	road_material.roughness = 0.94
+	road_instance.material_override = road_material
+	add_child(road_instance)
 
 func _build_detailed_building(base: Vector3, footprint: Vector2, height: float, wall_color: Color, layout_id: int) -> void:
 	# Batch every facade component into one vertex-coloured mesh per building.
