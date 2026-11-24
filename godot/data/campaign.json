@@ -1,446 +1,778 @@
 {
-  "campaign": "The Lost Signal",
-  "version": 1,
+  "title": "The Lost Signal",
+  "version": 2,
+  "chapters": [
+    {
+      "id": "chapter_1",
+      "title": "The Coast Remembers",
+      "missions": [
+        "m01",
+        "m02",
+        "m03",
+        "m04",
+        "m05"
+      ]
+    },
+    {
+      "id": "chapter_2",
+      "title": "Paper Trails",
+      "missions": [
+        "m06",
+        "m07",
+        "m08",
+        "m09",
+        "m10"
+      ]
+    },
+    {
+      "id": "chapter_3",
+      "title": "People in the Static",
+      "missions": [
+        "m11",
+        "m12",
+        "m13",
+        "m14",
+        "m15"
+      ]
+    },
+    {
+      "id": "chapter_4",
+      "title": "The Port of No Return",
+      "missions": [
+        "m16",
+        "m17",
+        "m18"
+      ]
+    },
+    {
+      "id": "chapter_5",
+      "title": "The Lost Signal",
+      "missions": [
+        "m19",
+        "m20"
+      ]
+    }
+  ],
   "missions": [
     {
       "id": "m01",
-      "title": "A Stranger in Town",
+      "title": "A Signal at Dawn",
       "district": "boardwalk",
+      "contact": "Maya",
+      "chapter": "chapter_1",
+      "reward": 280,
+      "briefing": "Find Maya at the diner",
       "objectives": [
         {
           "id": "m01_o1",
-          "text": "Meet Maya outside the diner"
+          "text": "Find Maya at the diner",
+          "trigger": "contact"
         },
         {
           "id": "m01_o2",
-          "text": "Hear Maya's lead"
+          "text": "Search the pier for Leo's last signal",
+          "trigger": "mission_event"
         },
         {
           "id": "m01_o3",
-          "text": "Accept the sealed case"
+          "text": "Recover the damaged receiver",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m01_o4",
+          "text": "Tell Maya what you found",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 0,
-      "sets_flag": "case_received",
-      "requires": ""
+      "requires": "",
+      "sets_flag": "completed_m01",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The damaged receiver proves Leo's signal was deliberately interrupted."
     },
     {
       "id": "m02",
-      "title": "The First Package",
+      "title": "Static Between Us",
       "district": "old_quarter",
+      "contact": "Maya",
+      "chapter": "chapter_1",
+      "reward": 300,
+      "briefing": "Visit the radio repair shop",
       "objectives": [
         {
           "id": "m02_o1",
-          "text": "Take the case to Nico's garage"
+          "text": "Visit the radio repair shop",
+          "trigger": "contact"
         },
         {
           "id": "m02_o2",
-          "text": "Talk to Nico about Leo"
+          "text": "Find a compatible receiver coil",
+          "trigger": "mission_event"
         },
         {
           "id": "m02_o3",
-          "text": "Ask about the last vehicle repair"
+          "text": "Decode the first audio fragment",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m02_o4",
+          "text": "Decide what to tell Maya",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 120,
-      "sets_flag": "nico_met",
-      "requires": "m01"
+      "requires": "m01",
+      "sets_flag": "completed_m02",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The decoded audio mentions a container number and a second voice."
     },
     {
       "id": "m03",
-      "title": "Old Engine, New Lies",
-      "district": "old_quarter",
+      "title": "The Wrong Number",
+      "district": "downtown",
+      "contact": "Nico",
+      "chapter": "chapter_1",
+      "reward": 320,
+      "briefing": "Meet Nico at his garage",
       "objectives": [
         {
           "id": "m03_o1",
-          "text": "Inspect Leo's old repair record"
+          "text": "Meet Nico at his garage",
+          "trigger": "contact"
         },
         {
           "id": "m03_o2",
-          "text": "Recover the vehicle tracker"
+          "text": "Trace the burner phone call",
+          "trigger": "mission_event"
         },
         {
           "id": "m03_o3",
-          "text": "Bring the tracker to Nico"
+          "text": "Question the courier",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m03_o4",
+          "text": "Keep or hand over the phone",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 180,
-      "sets_flag": "tracker_found",
-      "requires": "m02"
+      "requires": "m02",
+      "sets_flag": "completed_m03",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The burner call connects the case to a shell company."
     },
     {
       "id": "m04",
-      "title": "Market After Dark",
-      "district": "night_market",
+      "title": "A Familiar Face",
+      "district": "canal",
+      "contact": "Maya",
+      "chapter": "chapter_1",
+      "reward": 350,
+      "briefing": "Find the canal witness",
       "objectives": [
         {
           "id": "m04_o1",
-          "text": "Find the technician"
+          "text": "Find the canal witness",
+          "trigger": "contact"
         },
         {
           "id": "m04_o2",
-          "text": "Locate Vesper"
+          "text": "Earn the witness's trust",
+          "trigger": "mission_event"
         },
         {
           "id": "m04_o3",
-          "text": "Choose how to obtain the frequency details"
+          "text": "Compare the story with the audio",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m04_o4",
+          "text": "Protect or reveal their identity",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 220,
-      "sets_flag": "vesper_contact",
-      "requires": "m03"
+      "requires": "m03",
+      "sets_flag": "completed_m04",
+      "evidence": true,
+      "public_support_reward": 5,
+      "epilogue": "A witness confirms Leo was seen after his official disappearance."
     },
     {
       "id": "m05",
-      "title": "Static on the Line",
-      "district": "industrial_belt",
+      "title": "The Boardwalk Job",
+      "district": "boardwalk",
+      "contact": "Nico",
+      "chapter": "chapter_1",
+      "reward": 380,
+      "briefing": "Collect the car keys",
       "objectives": [
         {
           "id": "m05_o1",
-          "text": "Reach the relay station"
+          "text": "Collect the car keys",
+          "trigger": "contact"
         },
         {
           "id": "m05_o2",
-          "text": "Restore power to the receiver"
+          "text": "Follow the delivery route",
+          "trigger": "mission_event"
         },
         {
           "id": "m05_o3",
-          "text": "Record the unknown signal"
+          "text": "Photograph the unmarked van",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m05_o4",
+          "text": "Return with the evidence",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 260,
-      "sets_flag": "signal_recorded",
-      "requires": "m04"
+      "requires": "m04",
+      "sets_flag": "completed_m05",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "Photographs connect a delivery van to the port network."
     },
     {
       "id": "m06",
-      "title": "The Wrong Address",
-      "district": "old_quarter",
+      "title": "Paper City",
+      "district": "downtown",
+      "contact": "Vesper",
+      "chapter": "chapter_2",
+      "reward": 400,
+      "briefing": "Meet Vesper at the market",
       "objectives": [
         {
           "id": "m06_o1",
-          "text": "Decode the first location"
+          "text": "Meet Vesper at the market",
+          "trigger": "contact"
         },
         {
           "id": "m06_o2",
-          "text": "Search the abandoned apartment"
+          "text": "Find the shell-company filing",
+          "trigger": "mission_event"
         },
         {
           "id": "m06_o3",
-          "text": "Find the blue-lantern note"
+          "text": "Compare directors and addresses",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m06_o4",
+          "text": "Choose how to pay for the information",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 280,
-      "sets_flag": "blue_lantern_clue",
-      "requires": "m05"
+      "requires": "m05",
+      "sets_flag": "completed_m06",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The company filings expose a false redevelopment contractor."
     },
     {
       "id": "m07",
-      "title": "Debt Collectors",
-      "district": "marina",
+      "title": "Under the Overpass",
+      "district": "industrial_belt",
+      "contact": "Nico",
+      "chapter": "chapter_2",
+      "reward": 420,
+      "briefing": "Reach the service road",
       "objectives": [
         {
           "id": "m07_o1",
-          "text": "Reach the marina"
+          "text": "Reach the service road",
+          "trigger": "contact"
         },
         {
           "id": "m07_o2",
-          "text": "Deal with the people asking about the tracker"
+          "text": "Locate the relay box",
+          "trigger": "mission_event"
         },
         {
           "id": "m07_o3",
-          "text": "Escape with the copied data"
+          "text": "Restore power safely",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m07_o4",
+          "text": "Copy the shipment schedule",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 320,
-      "sets_flag": "marina_data",
-      "requires": "m06"
+      "requires": "m06",
+      "sets_flag": "completed_m07",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The relay logs show repeated night shipments."
     },
     {
       "id": "m08",
-      "title": "A Friend in Need",
-      "district": "old_quarter",
+      "title": "Open Water",
+      "district": "harbor",
+      "contact": "Maya",
+      "chapter": "chapter_2",
+      "reward": 450,
+      "briefing": "Meet Maya at the public pier",
       "objectives": [
         {
           "id": "m08_o1",
-          "text": "Find Nico's missing tool case"
+          "text": "Meet Maya at the public pier",
+          "trigger": "contact"
         },
         {
           "id": "m08_o2",
-          "text": "Recover it from the storage yard"
+          "text": "Follow the signal along the docks",
+          "trigger": "mission_event"
         },
         {
           "id": "m08_o3",
-          "text": "Return it to Nico"
+          "text": "Find the waterproof case",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m08_o4",
+          "text": "Choose what to do with the drive",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 300,
-      "sets_flag": "nico_helped",
-      "requires": "m07"
+      "requires": "m07",
+      "sets_flag": "completed_m08",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The encrypted drive contains altered shipping manifests."
     },
     {
       "id": "m09",
-      "title": "Ghost Frequency",
-      "district": "industrial_belt",
+      "title": "The Quiet Deal",
+      "district": "night_market",
+      "contact": "Vesper",
+      "chapter": "chapter_2",
+      "reward": 470,
+      "briefing": "Find Vesper's contact",
       "objectives": [
         {
           "id": "m09_o1",
-          "text": "Tune the receiver to the recorded frequency"
+          "text": "Find Vesper's contact",
+          "trigger": "contact"
         },
         {
           "id": "m09_o2",
-          "text": "Trace the hidden data burst"
+          "text": "Hear both sides of the deal",
+          "trigger": "mission_event"
         },
         {
           "id": "m09_o3",
-          "text": "Recover the encrypted transmitter"
+          "text": "Verify the access code",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m09_o4",
+          "text": "Accept, reject or renegotiate",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 360,
-      "sets_flag": "transmitter_found",
-      "requires": "m08"
+      "requires": "m08",
+      "sets_flag": "completed_m09",
+      "evidence": false,
+      "public_support_reward": 0,
+      "epilogue": "Vesper's code opens a restricted route but may be compromised."
     },
     {
       "id": "m10",
-      "title": "The Harbor Files",
-      "district": "downtown",
+      "title": "The Safehouse",
+      "district": "old_quarter",
+      "contact": "Maya",
+      "chapter": "chapter_2",
+      "reward": 500,
+      "briefing": "Reach the safehouse",
       "objectives": [
         {
           "id": "m10_o1",
-          "text": "Reach the records building"
+          "text": "Reach the safehouse",
+          "trigger": "contact"
         },
         {
           "id": "m10_o2",
-          "text": "Choose an entry route"
+          "text": "Secure the entrances",
+          "trigger": "mission_event"
         },
         {
           "id": "m10_o3",
-          "text": "Copy the Harbor Authority manifest"
+          "text": "Review the evidence wall",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m10_o4",
+          "text": "Choose who gets a copy",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 420,
-      "sets_flag": "harbor_manifest",
-      "requires": "m09"
+      "requires": "m09",
+      "sets_flag": "completed_m10",
+      "evidence": true,
+      "public_support_reward": 5,
+      "epilogue": "The team learns it is under surveillance."
     },
     {
       "id": "m11",
       "title": "No Safe Route",
       "district": "boardwalk",
+      "contact": "Maya",
+      "chapter": "chapter_3",
+      "reward": 520,
+      "briefing": "Meet Maya at the fallback location",
       "objectives": [
         {
           "id": "m11_o1",
-          "text": "Meet Maya at the safe location"
+          "text": "Meet Maya at the fallback location",
+          "trigger": "contact"
         },
         {
           "id": "m11_o2",
-          "text": "Decide who holds the original evidence"
+          "text": "Choose who holds the original",
+          "trigger": "mission_event"
         },
         {
           "id": "m11_o3",
-          "text": "Deliver a protected copy"
+          "text": "Deliver a protected copy",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m11_o4",
+          "text": "Escape the surveillance team",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 400,
-      "sets_flag": "evidence_custody_chosen",
-      "requires": "m10"
+      "requires": "m10",
+      "sets_flag": "completed_m11",
+      "evidence": false,
+      "public_support_reward": 0,
+      "epilogue": "The evidence custody decision changes who can support the finale."
     },
     {
       "id": "m12",
       "title": "Night Shift",
       "district": "harbor",
+      "contact": "Nico",
+      "chapter": "chapter_3",
+      "reward": 560,
+      "briefing": "Find the night worker",
       "objectives": [
         {
           "id": "m12_o1",
-          "text": "Find the night-shift worker"
+          "text": "Find the night worker",
+          "trigger": "contact"
         },
         {
           "id": "m12_o2",
-          "text": "Earn or obtain their testimony"
+          "text": "Earn their testimony",
+          "trigger": "mission_event"
         },
         {
           "id": "m12_o3",
-          "text": "Record the shipment description"
+          "text": "Record the shipment description",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m12_o4",
+          "text": "Get the worker to safety",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 440,
-      "sets_flag": "worker_testimony",
-      "requires": "m11"
+      "requires": "m11",
+      "sets_flag": "completed_m12",
+      "evidence": true,
+      "public_support_reward": 5,
+      "epilogue": "The worker confirms that manifests were edited after departure."
     },
     {
       "id": "m13",
       "title": "The Watcher",
       "district": "downtown",
+      "contact": "Vesper",
+      "chapter": "chapter_3",
+      "reward": 590,
+      "briefing": "Reach the rooftop lookout",
       "objectives": [
         {
           "id": "m13_o1",
-          "text": "Reach the rooftop lookout"
+          "text": "Reach the rooftop lookout",
+          "trigger": "contact"
         },
         {
           "id": "m13_o2",
-          "text": "Identify the watcher"
+          "text": "Identify the watcher",
+          "trigger": "mission_event"
         },
         {
           "id": "m13_o3",
-          "text": "Choose whether to recruit or expose them"
+          "text": "Learn why they follow you",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m13_o4",
+          "text": "Recruit or expose them",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 480,
-      "sets_flag": "watcher_resolved",
-      "requires": "m12"
+      "requires": "m12",
+      "sets_flag": "completed_m13",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The watcher may become a protected witness."
     },
     {
       "id": "m14",
       "title": "Deep Storage",
       "district": "harbor",
+      "contact": "Nico",
+      "chapter": "chapter_3",
+      "reward": 620,
+      "briefing": "Locate the storage bay",
       "objectives": [
         {
           "id": "m14_o1",
-          "text": "Locate the concealed storage bay"
+          "text": "Locate the storage bay",
+          "trigger": "contact"
         },
         {
           "id": "m14_o2",
-          "text": "Search the shipment records"
+          "text": "Search the shipment records",
+          "trigger": "mission_event"
         },
         {
           "id": "m14_o3",
-          "text": "Recover Leo's personal item"
+          "text": "Recover Leo's personal item",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m14_o4",
+          "text": "Leave before the patrol returns",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 520,
-      "sets_flag": "leo_item_found",
-      "requires": "m13"
+      "requires": "m13",
+      "sets_flag": "completed_m14",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "Leo left a recording proving he expected to be followed."
     },
     {
       "id": "m15",
       "title": "The Second Key",
       "district": "night_market",
+      "contact": "Vesper",
+      "chapter": "chapter_3",
+      "reward": 650,
+      "briefing": "Meet Vesper at the arcade",
       "objectives": [
         {
           "id": "m15_o1",
-          "text": "Meet Vesper"
+          "text": "Meet Vesper at the arcade",
+          "trigger": "contact"
         },
         {
           "id": "m15_o2",
-          "text": "Settle or renegotiate the information debt"
+          "text": "Settle the information debt",
+          "trigger": "mission_event"
         },
         {
           "id": "m15_o3",
-          "text": "Obtain the second access key"
+          "text": "Obtain the second key",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m15_o4",
+          "text": "Decide if Vesper joins the plan",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 500,
-      "sets_flag": "second_key",
-      "requires": "m14"
+      "requires": "m14",
+      "sets_flag": "completed_m15",
+      "evidence": false,
+      "public_support_reward": 0,
+      "epilogue": "The second key exposes a hidden logistics channel."
     },
     {
       "id": "m16",
       "title": "Port of No Return",
       "district": "industrial_belt",
+      "contact": "Nico",
+      "chapter": "chapter_4",
+      "reward": 700,
+      "briefing": "Prepare the vehicle",
       "objectives": [
         {
           "id": "m16_o1",
-          "text": "Prepare a vehicle with Nico"
+          "text": "Prepare the vehicle",
+          "trigger": "contact"
         },
         {
           "id": "m16_o2",
-          "text": "Secure a port access pass"
+          "text": "Secure a port pass",
+          "trigger": "mission_event"
         },
         {
           "id": "m16_o3",
-          "text": "Choose the support contact"
+          "text": "Choose the support contact",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m16_o4",
+          "text": "Reach the harbour perimeter",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 600,
-      "sets_flag": "port_plan_ready",
-      "requires": "m15"
+      "requires": "m15",
+      "sets_flag": "completed_m16",
+      "evidence": false,
+      "public_support_reward": 0,
+      "epilogue": "The crew prepares a risky harbour operation."
     },
     {
       "id": "m17",
       "title": "Break the Chain",
       "district": "harbor",
+      "contact": "Maya",
+      "chapter": "chapter_4",
+      "reward": 760,
+      "briefing": "Reach the relay control point",
       "objectives": [
         {
           "id": "m17_o1",
-          "text": "Reach the relay control point"
+          "text": "Reach the relay control point",
+          "trigger": "contact"
         },
         {
           "id": "m17_o2",
-          "text": "Disable the shipment alert"
+          "text": "Disable the shipment alert",
+          "trigger": "mission_event"
         },
         {
           "id": "m17_o3",
-          "text": "Leave before the security sweep"
+          "text": "Copy the final manifest",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m17_o4",
+          "text": "Escape the security sweep",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 650,
-      "sets_flag": "security_blind_spot",
-      "requires": "m16"
+      "requires": "m16",
+      "sets_flag": "completed_m17",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The final manifest identifies a private site outside the city."
     },
     {
       "id": "m18",
       "title": "The Last Witness",
       "district": "canal",
+      "contact": "Maya",
+      "chapter": "chapter_4",
+      "reward": 800,
+      "briefing": "Find the last witness",
       "objectives": [
         {
           "id": "m18_o1",
-          "text": "Find the witness by the canal"
+          "text": "Find the last witness",
+          "trigger": "contact"
         },
         {
           "id": "m18_o2",
-          "text": "Protect them or pursue the moving lead"
+          "text": "Protect them or pursue the lead",
+          "trigger": "mission_event"
         },
         {
           "id": "m18_o3",
-          "text": "Secure the final location clue"
+          "text": "Secure the final clue",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m18_o4",
+          "text": "Decide whether to release a partial story",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 700,
-      "sets_flag": "last_witness",
-      "requires": "m17"
+      "requires": "m17",
+      "sets_flag": "completed_m18",
+      "evidence": true,
+      "public_support_reward": 5,
+      "epilogue": "The witness can corroborate the timeline if protected."
     },
     {
       "id": "m19",
       "title": "Brother's Trail",
       "district": "outskirts",
+      "contact": "Nico",
+      "chapter": "chapter_5",
+      "reward": 900,
+      "briefing": "Follow the GPS trace",
       "objectives": [
         {
           "id": "m19_o1",
-          "text": "Follow the final GPS trace"
+          "text": "Follow the GPS trace",
+          "trigger": "contact"
         },
         {
           "id": "m19_o2",
-          "text": "Search the abandoned service site"
+          "text": "Search the abandoned service site",
+          "trigger": "mission_event"
         },
         {
           "id": "m19_o3",
-          "text": "Listen to Leo's recorded message"
+          "text": "Listen to Leo's message",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m19_o4",
+          "text": "Choose the team's final approach",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 750,
-      "sets_flag": "leo_message",
-      "requires": "m18"
+      "requires": "m18",
+      "sets_flag": "completed_m19",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "Leo is alive and has been hiding to protect the evidence."
     },
     {
       "id": "m20",
       "title": "The Lost Signal",
       "district": "harbor",
+      "contact": "Maya",
+      "chapter": "chapter_5",
+      "reward": 1200,
+      "briefing": "Reach Leo's location",
       "objectives": [
         {
           "id": "m20_o1",
-          "text": "Reach Leo's location"
+          "text": "Reach Leo's location",
+          "trigger": "contact"
         },
         {
           "id": "m20_o2",
-          "text": "Choose what to do with the evidence"
+          "text": "Choose the evidence release plan",
+          "trigger": "mission_event"
         },
         {
           "id": "m20_o3",
-          "text": "Resolve the confrontation and determine the ending"
+          "text": "Confront Adrian Vale",
+          "trigger": "mission_event"
+        },
+        {
+          "id": "m20_o4",
+          "text": "Decide Leo's future and the city's next chapter",
+          "trigger": "mission_event"
         }
       ],
-      "reward": 1000,
-      "sets_flag": "campaign_finished",
-      "requires": "m19"
+      "requires": "m19",
+      "sets_flag": "completed_m20",
+      "evidence": true,
+      "public_support_reward": 0,
+      "epilogue": "The finale resolves the family story and the city's future."
     }
   ]
 }
