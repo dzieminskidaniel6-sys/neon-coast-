@@ -22,6 +22,9 @@ func _ready() -> void:
 	_build_objective()
 	_build_player()
 	_build_hud()
+	var campaign_director = preload("res://scripts/systems/game_director.gd").new()
+	campaign_director.configure(player, objective)
+	add_child(campaign_director)
 	_update_day_night(0.0)
 
 func _process(delta: float) -> void:
@@ -39,12 +42,8 @@ func _process(delta: float) -> void:
 	var hour := int(phase * 24.0)
 	hud_label.text = "NEON COAST  //  THE LOST SIGNAL\nDISTRICT 01  •  BOARDWALK\n" + ("MAYA FOUND" if mission_done else mission_text) + "     " + ("%02d:00" % hour) + "\nSTAMINA  " + str(int(player.stamina)) + "%"
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and not mission_done and is_instance_valid(player):
-		if player.global_position.distance_to(objective.global_position) < 3.5:
-			mission_done = true
-			dialogue_text = "MAYA: Alex? I heard you were looking for Leo. Meet me at the old pier after dark."
-			objective.visible = false
+func _unhandled_input(_event: InputEvent) -> void:
+	# Interaction and campaign progression are owned by GameDirector.
 
 func _build_environment() -> void:
 	var world_env := WorldEnvironment.new()
