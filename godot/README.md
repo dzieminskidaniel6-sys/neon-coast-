@@ -89,3 +89,7 @@ Gameplay components:
 - `NeonVehicleController` — basic arcade vehicle movement controller.
 
 These are system foundations, not yet fully connected to the HUD, current city scene, final dialogue UI or all 20 mission spaces. Runtime validation is still required on the target laptop.
+
+- [Character arcs and dialogue](docs/CHARACTER_ARCS_AND_DIALOGUE.md) — full cast arcs, dialogue rules and draft ending conditions.
+- [Side activities](data/side_activities.json) — ten optional activities across the districts.
+- [Opening dialogue reference](data/dialogue_opening.json) — dialogue beats for the first five missions.
