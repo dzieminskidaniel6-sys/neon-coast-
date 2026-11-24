@@ -22,7 +22,7 @@ static func create_alex() -> Node3D:
 	var teal_streak := _add_capsule(root, "Alex_Teal_Streak", 0.025, 0.24, Vector3(0.16, 2.20, -0.19), Color(0.06, 0.78, 0.82))
 	teal_streak.rotation.z = -0.22
 	_add_anime_eyes(root, 2.02, -0.248, Color(0.38, 0.65, 0.55), 0.045)
-	_add_capsule(root, "Alex_Crossbody_Str ap", 0.035, 0.95, Vector3(0.12, 1.22, -0.245), Color(0.025, 0.035, 0.045))
+	_add_capsule(root, "Alex_Crossbody_Strap", 0.035, 0.95, Vector3(0.12, 1.22, -0.245), Color(0.025, 0.035, 0.045))
 	_add_box(root, "Alex_Bag", Vector3(-0.23, 0.98, 0.02), Vector3(0.24, 0.31, 0.16), Color(0.04, 0.055, 0.075))
 	_add_box(root, "Alex_Watch", Vector3(0.43, 0.87, -0.015), Vector3(0.13, 0.08, 0.12), Color(0.025, 0.035, 0.045))
 	return root
@@ -71,6 +71,8 @@ static func _add_capsule(root: Node3D, node_name: String, radius: float, height:
 	var mesh := CapsuleMesh.new()
 	mesh.radius = radius
 	mesh.height = height
+	mesh.radial_segments = 12
+	mesh.rings = 5
 	node.mesh = mesh
 	node.position = at
 	node.material_override = _material(color)
@@ -83,6 +85,8 @@ static func _add_sphere(root: Node3D, node_name: String, at: Vector3, radius: fl
 	var mesh := SphereMesh.new()
 	mesh.radius = radius
 	mesh.height = radius * 2.0
+	mesh.radial_segments = 14
+	mesh.rings = 8
 	node.mesh = mesh
 	node.position = at
 	node.scale = scale_value
@@ -105,6 +109,7 @@ static func _add_cylinder(root: Node3D, node_name: String, at: Vector3, top: flo
 	var node := MeshInstance3D.new()
 	node.name = node_name
 	var mesh := CylinderMesh.new()
+	mesh.radial_segments = 12
 	mesh.top_radius = top
 	mesh.bottom_radius = bottom
 	mesh.height = height
