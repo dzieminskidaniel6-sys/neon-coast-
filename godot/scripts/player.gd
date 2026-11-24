@@ -50,11 +50,14 @@ func _input(event: InputEvent) -> void:
 		_camera_pivot.rotation.y -= event.relative.x * mouse_sensitivity
 		_camera_pivot.rotation.x -= event.relative.y * mouse_sensitivity
 		_camera_pivot.rotation.x = clampf(_camera_pivot.rotation.x, deg_to_rad(-55), deg_to_rad(35))
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _unhandled_input(event: InputEvent) -> void:
+	# UI buttons consume clicks first; only capture the mouse after a click on the 3D world.
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
 	var input_2d := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
