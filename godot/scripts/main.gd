@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 	if not mission_done and distance < 3.0:
 		hint_label.text = "Press E to talk to Maya"
 	else:
-		hint_label.text = "WASD move  |  SHIFT sprint  |  SPACE jump  |  E interact  |  ESC release mouse"
+		hint_label.text = "WASD move  |  SHIFT sprint  |  SPACE jump  |  E interact  |  CLICK capture mouse  |  ESC release"
 	hud_label.text = "NEON COAST  //  THE LOST SIGNAL\nMISSION 01  •  " + ("MAYA FOUND" if mission_done else mission_text) + "\nSTAMINA  " + str(int(player.stamina)) + "%"
 
 func _unhandled_input(event: InputEvent) -> void:
