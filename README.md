@@ -1,52 +1,64 @@
-# NEON COAST — Vice District
+# NEON COAST — THE LOST SIGNAL
 
-An original 2D open-world story game made with Python + pygame-ce. Inspired by the genre of open-world city adventures; not affiliated with or a recreation of GTA.
+An original top-down 2D open-world story adventure built with Python and pygame-ce. Designed for low-end laptops, including Intel UHD integrated graphics.
 
-## The story
-You play as **Alex**, who arrives in Vice District searching for his missing brother Leo. With help from Maya, a street-smart fixer, and Nico, a mechanic, Alex follows a trail through the docks, night market and harbor. Five story jobs, character conversations, rewards and an ending take you through the first chapter. After the finale, explore the city in free roam.
+## Campaign
+Play as Alex, searching Vice District for his missing brother Leo. Follow a trail through the boardwalk, garages, night market, relay stations, canal district and container port. The campaign is structured as 20 story jobs with original dialogue, rewards and a finale. Four optional side contracts add extra exploration. After the finale, the city remains open for free roam.
 
 ## Features
-- Five story missions with original character dialogue.
-- Title screen, conversations, ending and free-roam after the campaign.
-- Large coastal city with roads, buildings and scenery.
-- Walk, sprint, enter and drive cars; traffic roams the streets.
+- 20 linked story missions and four optional side contracts.
+- Original characters, dialogue, mystery and campaign finale.
+- Large 4200 × 3150 city map with roads, buildings and scenery.
+- Walk, sprint, enter and drive vehicles; moving traffic.
 - Wanted level and police pursuit.
-- Cash rewards, health, minimap, HUD and pause menu.
-- Resizable window; no external art or sound assets required.
+- Cash, health, stamina, minimap, HUD and pause.
+- JSON save/load (F5 saves, F9 loads).
+- No external art or audio assets required.
+- Static map pre-rendering, cached vehicle sprites and 30 FPS target.
 
-## Run on a Windows 10/11 laptop
-1. Install **Python 3.10 or newer** from https://www.python.org/downloads/
-2. During installation, tick **Add python.exe to PATH**.
-3. On GitHub, click the green **Code** button → **Download ZIP**, then extract it.
-4. Open the extracted game folder and double-click `run_game.bat`.
-
-If that does not work, open Command Prompt in the game folder and run:
-```bat
-py -m pip install --upgrade pip
-py -m pip install -r requirements.txt
-py main.py
-```
-
-## macOS / Linux
+## Arch Linux installation
+Use a virtual environment so Arch's system Python remains untouched:
 ```bash
-python3 -m pip install -r requirements.txt
-python3 main.py
+sudo pacman -S --needed python python-pip sdl2
+cd neon-coast-
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python main.py
 ```
+If the folder name differs, change into the folder containing main.py. For each new terminal session:
+```bash
+cd /path/to/neon-coast-
+source .venv/bin/activate
+python main.py
+```
+
+## Other systems
+- Windows 10/11: install Python 3.10+, then run: py -m pip install -r requirements.txt and py main.py.
+- macOS: python3 -m venv .venv, activate it, install requirements, then run python main.py.
 
 ## Controls
-- WASD / arrow keys: move or drive
+- WASD / arrows: walk or drive
 - Shift: sprint
-- E: enter / exit a nearby car
+- E: enter / exit a nearby car; approach named contacts for story context
 - Space: handbrake / continue dialogue
 - Enter: start / continue dialogue
-- Esc: pause / resume
 - M: toggle minimap
+- F5: save
+- F9: load
+- Esc: pause / resume
+- Q: quit from pause menu
 
-## Project files
-- `main.py` — game loop and states
-- `story.py` — original story scenes and dialogue
-- `missions.py` — campaign objectives and rewards
-- `entities.py` — player, cars, traffic and police
-- `world.py` — city layout and collisions
-- `ui.py` — title screen, HUD, minimap, dialogue and pause
-- `settings.py` — resolution, world size and palette
+## Project structure
+- main.py — game loop and state handling
+- settings.py — low-end performance settings and palette
+- world.py — deterministic city map and static rendering
+- entities.py — player, vehicles and police AI
+- missions.py — 20 story jobs and optional contracts
+- story.py — original story scenes
+- savegame.py — JSON save/load
+- ui.py — menus, HUD, dialogue and minimap
+
+## Current scope
+This is a playable foundation and expanding campaign, not a finished commercial release. Mission flow, performance and save compatibility should be tested on the target laptop before calling it release-ready.
