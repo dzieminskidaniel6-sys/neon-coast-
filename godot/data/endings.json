@@ -1,0 +1,50 @@
+{
+  "endings": [
+    {
+      "id": "ending_public_truth",
+      "title": "The City Knows",
+      "conditions": {
+        "min_evidence": 6,
+        "min_public_support": 60,
+        "leo_relationship": 0
+      },
+      "summary": "The evidence is released through trusted journalists. Vale's network is exposed, but the city must rebuild its institutions."
+    },
+    {
+      "id": "ending_quiet_escape",
+      "title": "A Quiet Horizon",
+      "conditions": {
+        "min_evidence": 4,
+        "leo_relationship": 35
+      },
+      "summary": "Alex helps Leo disappear safely. The network is damaged but not fully dismantled; the family gets a chance to start again."
+    },
+    {
+      "id": "ending_allies",
+      "title": "No One Left Behind",
+      "conditions": {
+        "min_evidence": 5,
+        "maya_relationship": 45,
+        "nico_relationship": 30
+      },
+      "summary": "The whole crew coordinates a protected release and witness evacuation. The truth survives because the team trusts one another."
+    },
+    {
+      "id": "ending_deal",
+      "title": "The Necessary Lie",
+      "conditions": {
+        "min_evidence": 3,
+        "vesper_relationship": 35
+      },
+      "summary": "A deal keeps the witnesses safe and buys time. Vale loses leverage, but the public never learns the whole story."
+    },
+    {
+      "id": "ending_broken_signal",
+      "title": "Static",
+      "conditions": {
+        "fallback": true
+      },
+      "summary": "Evidence is incomplete and trust has fractured. Leo is found, but Vale's organisation remains powerful and the group goes separate ways."
+    }
+  ]
+}
