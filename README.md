@@ -70,3 +70,9 @@ This is a playable foundation and expanding campaign, not a finished commercial 
 
 ## 3D remake (Godot 4)
 A separate low-poly third-person 3D remake is being developed in the `godot/` directory. It uses the Compatibility renderer for Intel UHD integrated graphics. See [godot/README.md](godot/README.md) for Arch Linux and Hyprland setup and launch instructions.
+
+## Native Arch Linux desktop build (Godot 3D version)
+
+The current third-person 3D version lives in `godot/`. A standalone Linux x86_64 export and pacman package recipe are provided in [packaging/arch](packaging/arch/README.md). This installs a desktop-menu entry named **NEON COAST: The Lost Signal** and a `neon-coast` launcher; Godot Editor is not needed to run the installed export.
+
+Build instructions: [Arch Linux desktop packaging](packaging/arch/README.md). This requires Godot 4.7.x and its matching Linux export templates.
