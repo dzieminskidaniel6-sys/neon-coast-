@@ -81,6 +81,8 @@ func _update_hud() -> void:
 	var objective_line:="Explore the coast"
 	if not mission.is_empty():
 		title=str(mission.get("title","MISSION"))
+	elif GameState.get_flag("campaign_ending",false):
+		title="ENDING: "+str(GameState.get_flag("campaign_ending_title","Static"))
 		var objectives: Array=mission.get("objectives",[])
 		var index:=MissionManager.active_objective_index
 		if index<objectives.size(): objective_line=str(objectives[index].get("text","Continue"))
@@ -113,9 +115,14 @@ func _place_objective(district_id: String, objective_index: int) -> void:
 	objective.global_position=base+offset
 
 func _on_mission_completed(mission: Dictionary) -> void:
-	GameState.set_flag("last_completed_mission",str(mission.get("id","")))
+	var mission_id:=str(mission.get("id",""))
+	GameState.set_flag("last_completed_mission",mission_id)
+	if mission_id=="m20":
+		var ending:=EndingManager.resolve_ending()
+		GameState.set_flag("campaign_ending",str(ending.get("id","ending_broken_signal")))
+		GameState.set_flag("campaign_ending_title",str(ending.get("title","Static")))
 	_update_hud()
-	call_deferred("_start_next_mission")
+	if mission_id!="m20": call_deferred("_start_next_mission")
 
 func _start_next_mission() -> void:
 	MissionManager.start_next_available()
