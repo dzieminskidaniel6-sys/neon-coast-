@@ -1,0 +1,30 @@
+# Maintainer: NEON COAST project
+pkgname=neon-coast
+pkgver=0.2.0
+pkgrel=1
+pkgdesc="NEON COAST: The Lost Signal — native Linux story adventure"
+arch=('x86_64')
+url="https://github.com/dzieminskidaniel6-sys/neon-coast-"
+license=('custom')
+depends=('glibc' 'gcc-libs' 'libglvnd' 'libx11' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'mesa')
+makedepends=('godot')
+source=("git+https://github.com/dzieminskidaniel6-sys/neon-coast-.git"
+        "neon-coast.desktop"
+        "neon-coast.svg"
+        "neon-coast")
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+
+build() {
+  cd "$srcdir/neon-coast-/godot"
+  mkdir -p "$srcdir/neon-coast-/dist"
+  godot --headless --path . --editor --quit
+  godot --headless --path . --export-release "Linux/X11" "$srcdir/neon-coast-/dist/NEON-COAST.x86_64"
+}
+
+package() {
+  install -Dm755 "$srcdir/neon-coast-/dist/NEON-COAST.x86_64" "$pkgdir/opt/neon-coast/NEON-COAST.x86_64"
+  install -Dm755 "$srcdir/neon-coast" "$pkgdir/usr/bin/neon-coast"
+  install -Dm644 "$srcdir/neon-coast.desktop" "$pkgdir/usr/share/applications/neon-coast.desktop"
+  install -Dm644 "$srcdir/neon-coast.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/neon-coast.svg"
+  install -Dm644 "$srcdir/neon-coast-/godot/docs/FINAL_BUILD_NOTES.md" "$pkgdir/usr/share/doc/neon-coast/BUILD_NOTES.md"
+}
