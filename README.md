@@ -41,7 +41,9 @@ python main.py
 ## Controls
 - WASD / arrows: walk or drive
 - Shift: sprint
-- E: enter / exit a nearby car; approach named contacts for story context
+- E: enter / exit a nearby car; talk to named contacts
+- H: buy first aid for $120 (restores up to 45 health)
+- U: upgrade the current car at Nico's garage for $500
 - Space: handbrake / continue dialogue
 - Enter: start / continue dialogue
 - M: toggle minimap
