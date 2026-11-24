@@ -1,0 +1,170 @@
+{
+  "activities": [
+    {
+      "id": "side_maya_01",
+      "title": "The Long Way Home",
+      "district": "boardwalk",
+      "contact": "Maya",
+      "type": "neighbour_help",
+      "objectives": [
+        "Find the lost bag near the pier",
+        "Ask the retired dock worker about the old port",
+        "Return the bag without opening it"
+      ],
+      "reward": 180,
+      "effect": {
+        "relationship": "maya",
+        "amount": 8
+      }
+    },
+    {
+      "id": "side_nico_01",
+      "title": "Parts Run",
+      "district": "old_quarter",
+      "contact": "Nico",
+      "type": "collection",
+      "objectives": [
+        "Find the first engine part",
+        "Search the repair yard",
+        "Bring all parts to Nico"
+      ],
+      "reward": 220,
+      "effect": {
+        "flag": "handling_upgrade_unlocked"
+      }
+    },
+    {
+      "id": "side_nico_02",
+      "title": "One Last Tune",
+      "district": "old_quarter",
+      "contact": "Nico",
+      "type": "time_trial",
+      "objectives": [
+        "Start at the garage",
+        "Pass the three route markers",
+        "Finish without a major collision"
+      ],
+      "reward": 260,
+      "effect": {
+        "relationship": "nico",
+        "amount": 7
+      }
+    },
+    {
+      "id": "side_vesper_01",
+      "title": "Information Has a Price",
+      "district": "night_market",
+      "contact": "Vesper",
+      "type": "investigation",
+      "objectives": [
+        "Find the rumour's original source",
+        "Compare the two accounts",
+        "Show Vesper the verified facts"
+      ],
+      "reward": 240,
+      "effect": {
+        "relationship": "vesper",
+        "amount": 8
+      }
+    },
+    {
+      "id": "side_vesper_02",
+      "title": "Loose Ends",
+      "district": "night_market",
+      "contact": "Vesper",
+      "type": "delivery_choice",
+      "objectives": [
+        "Collect the sealed envelope",
+        "Deliver it to the arcade",
+        "Choose whether to inspect it"
+      ],
+      "reward": 300,
+      "effect": {
+        "flag": "vesper_deal_resolved"
+      }
+    },
+    {
+      "id": "side_city_01",
+      "title": "Last Delivery",
+      "district": "downtown",
+      "contact": "Courier dispatcher",
+      "type": "delivery",
+      "objectives": [
+        "Collect the package",
+        "Complete three drop-offs",
+        "Return before the timer expires"
+      ],
+      "reward": 200,
+      "effect": {
+        "flag": "courier_jobs_unlocked"
+      }
+    },
+    {
+      "id": "side_city_02",
+      "title": "Coastline Sprint",
+      "district": "boardwalk",
+      "contact": "Local racer",
+      "type": "race",
+      "objectives": [
+        "Reach the start line",
+        "Pass five checkpoints",
+        "Finish the coastal loop"
+      ],
+      "reward": 350,
+      "effect": {
+        "flag": "time_trial_unlocked"
+      }
+    },
+    {
+      "id": "side_industrial_01",
+      "title": "Scrap Value",
+      "district": "industrial_belt",
+      "contact": "Salvage worker",
+      "type": "collection",
+      "objectives": [
+        "Search the first scrap pile",
+        "Find two electronic components",
+        "Deliver them to the salvage worker"
+      ],
+      "reward": 190,
+      "effect": {
+        "flag": "transmitter_upgrade_clue"
+      }
+    },
+    {
+      "id": "side_canal_01",
+      "title": "Quiet Water",
+      "district": "canal",
+      "contact": "Canal resident",
+      "type": "search_rescue",
+      "objectives": [
+        "Ask residents about the missing dog",
+        "Follow paw prints along the path",
+        "Return the dog safely"
+      ],
+      "reward": 160,
+      "effect": {
+        "flag": "public_support",
+        "amount": 5
+      }
+    },
+    {
+      "id": "side_photo_01",
+      "title": "Vice in Frames",
+      "district": "all",
+      "contact": "Photo app",
+      "type": "photography",
+      "objectives": [
+        "Photograph the Old Pier",
+        "Photograph Vale Tower",
+        "Photograph Canal Lock",
+        "Photograph the harbour cranes",
+        "Photograph the Old Signal Mast"
+      ],
+      "reward": 250,
+      "effect": {
+        "flag": "city_journal_complete"
+      }
+    }
+  ]
+}
