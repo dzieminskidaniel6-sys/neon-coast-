@@ -81,12 +81,12 @@ func _update_hud() -> void:
 	var objective_line:="Explore the coast"
 	if not mission.is_empty():
 		title=str(mission.get("title","MISSION"))
-	elif GameState.get_flag("campaign_ending",false):
-		title="ENDING: "+str(GameState.get_flag("campaign_ending_title","Static"))
 		var objectives: Array=mission.get("objectives",[])
 		var index:=MissionManager.active_objective_index
 		if index<objectives.size(): objective_line=str(objectives[index].get("text","Continue"))
-	hud.text="NEON COAST  //  THE LOST SIGNAL\n"+title.to_upper()+"\n"+objective_line+"\n$ "+str(GameState.cash)+"   EVIDENCE "+str(GameState.evidence_count)
+	elif GameState.get_flag("campaign_ending",false):
+		title="ENDING: "+str(GameState.get_flag("campaign_ending_title","Static"))
+	hud.text="NEON COAST  //  THE LOST SIGNAL\n"+title.to_upper()+"\n"+objective_line+"\n$ "+str(GameState.cash)+"   EVIDENCE "+str(GameState.evidence_count)+"   SUPPORT "+str(GameState.public_support)+"%"
 
 func _on_mission_started(mission: Dictionary) -> void:
 	var district_id:=str(mission.get("district","boardwalk"))
