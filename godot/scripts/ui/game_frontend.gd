@@ -122,6 +122,7 @@ func _build_game_controls() -> void:
 	game_controls = Control.new()
 	game_controls.name = "InGameFrontendControls"
 	game_controls.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	game_controls.mouse_filter = Control.MOUSE_FILTER_PASS
 	add_child(game_controls)
 	var journal := _menu_button("J  /  DZIENNIK", _show_missions)
 	journal.position = Vector2(770, 194)
@@ -320,6 +321,7 @@ func _set_game_controls_enabled(enabled: bool) -> void:
 		player.set_process_input(enabled)
 	if is_instance_valid(campaign_director):
 		campaign_director.set_process(enabled)
+		campaign_director.set_process_unhandled_input(enabled)
 		campaign_director.set_process_unhandled_input(enabled)
 
 func _save_game() -> void:
