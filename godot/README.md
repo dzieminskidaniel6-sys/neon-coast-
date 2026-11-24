@@ -2,7 +2,7 @@
 
 ## Design documentation
 
-- [Game & Story Bible](docs/GAME_BIBLE.md) — story canon, characters, 20-mission campaign, choices, endings, gameplay systems and production roadmap.
+- [Game & Story Bible](docs/GAME_BIBLE.md) — story canon, characters, 20-mission campaign, choices, endings, gameplay systems and production roadmap.\n- [Mission Design 01–05](docs/MISSIONS_01-05.md) — detailed playable design for the first five campaign missions, dialogue beats, choices, flags and acceptance criteria.
 
 
 A lightweight third-person 3D prototype designed for Intel Celeron 4205U, Intel UHD 610 and 4 GB RAM.
