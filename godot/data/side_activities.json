@@ -1,0 +1,104 @@
+{
+  "activities": [
+    {
+      "id": "side_maya_01",
+      "title": "The Long Way Home",
+      "district": "boardwalk",
+      "contact": "Maya",
+      "type": "neighbour_help",
+      "summary": "Help Maya return a lost bag to a retired dock worker; reveals she once worked near the port.",
+      "reward": 180,
+      "consequence": "Maya gains trust; unlocks a personal conversation."
+    },
+    {
+      "id": "side_nico_01",
+      "title": "Parts Run",
+      "district": "old_quarter",
+      "contact": "Nico",
+      "type": "collection",
+      "summary": "Recover three rare engine parts from small repair yards.",
+      "reward": 220,
+      "consequence": "Unlocks a basic handling upgrade."
+    },
+    {
+      "id": "side_nico_02",
+      "title": "One Last Tune",
+      "district": "old_quarter",
+      "contact": "Nico",
+      "type": "time_trial",
+      "summary": "Test Nico's rebuilt car on a short legal time-trial route.",
+      "reward": 260,
+      "consequence": "Unlocks a garage discount."
+    },
+    {
+      "id": "side_vesper_01",
+      "title": "Information Has a Price",
+      "district": "night_market",
+      "contact": "Vesper",
+      "type": "investigation",
+      "summary": "Find the source of a false rumour before Vesper sells it as fact.",
+      "reward": 240,
+      "consequence": "Vesper's later information is more reliable."
+    },
+    {
+      "id": "side_vesper_02",
+      "title": "Loose Ends",
+      "district": "night_market",
+      "contact": "Vesper",
+      "type": "delivery_choice",
+      "summary": "Deliver a sealed envelope and choose whether to inspect it or respect the deal.",
+      "reward": 300,
+      "consequence": "Changes Vesper's trust and one late-game support option."
+    },
+    {
+      "id": "side_city_01",
+      "title": "Last Delivery",
+      "district": "downtown",
+      "contact": "Courier dispatcher",
+      "type": "delivery",
+      "summary": "Complete a multi-stop courier route before the timer expires.",
+      "reward": 200,
+      "consequence": "Unlocks repeatable courier jobs."
+    },
+    {
+      "id": "side_city_02",
+      "title": "Coastline Sprint",
+      "district": "boardwalk",
+      "contact": "Local racer",
+      "type": "race",
+      "summary": "Race a short loop along the coast without damaging the borrowed car.",
+      "reward": 350,
+      "consequence": "Unlocks time-trial leaderboard."
+    },
+    {
+      "id": "side_industrial_01",
+      "title": "Scrap Value",
+      "district": "industrial_belt",
+      "contact": "Salvage worker",
+      "type": "collection",
+      "summary": "Find salvageable electronic components around the warehouse edge.",
+      "reward": 190,
+      "consequence": "Unlocks a transmitter upgrade clue."
+    },
+    {
+      "id": "side_canal_01",
+      "title": "Quiet Water",
+      "district": "canal",
+      "contact": "Canal resident",
+      "type": "search_rescue",
+      "summary": "Search the canal path for a missing dog and return it safely.",
+      "reward": 160,
+      "consequence": "Small public-support increase."
+    },
+    {
+      "id": "side_photo_01",
+      "title": "Vice in Frames",
+      "district": "all",
+      "contact": "Photo app",
+      "type": "photography",
+      "summary": "Photograph five landmarks from marked viewpoints.",
+      "reward": 250,
+      "consequence": "Adds entries to the city journal."
+    }
+  ]
+}
