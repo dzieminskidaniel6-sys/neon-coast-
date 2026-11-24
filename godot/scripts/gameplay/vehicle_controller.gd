@@ -9,6 +9,9 @@ class_name NeonVehicleController
 var current_speed := 0.0
 var driver: Node3D
 
+func _ready() -> void:
+	add_to_group("vehicles")
+
 func enter_vehicle(actor: Node3D) -> bool:
 	if is_instance_valid(driver): return false
 	driver=actor
