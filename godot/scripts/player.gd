@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	var input_2d := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var forward := -_camera_pivot.global_basis.z
 	var right := _camera_pivot.global_basis.x
-	var direction := (right * input_2d.x + forward * input_2d.y)
+	var direction := (right * input_2d.x - forward * input_2d.y)
 	direction.y = 0.0
 	direction = direction.normalized()
 
