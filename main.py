@@ -52,7 +52,26 @@ def main():
        player.vehicle=near;wanted=min(5,wanted+1);notify("VEHICLE STOLEN — POLICE ALERT")
       else:
        nearby=min(npcs,key=lambda n:math.dist((n[1],n[2]),(player.x,player.y)),default=None)
-       if nearby and math.dist((nearby[1],nearby[2]),(player.x,player.y))<95:notify("CONTACT: "+nearby[0]+" — follow the yellow objective marker")
+       if nearby and math.dist((nearby[1],nearby[2]),(player.x,player.y))<95:
+        lines={
+         "MAYA":[("MAYA","Keep following Leo's trail. The Harbor Authority is getting nervous.")],
+         "NICO":[("NICO","I can tune your ride. Bring cash, and don't ask where I got the parts.")],
+         "VESPER":[("VESPER","Information costs money. Fortunately, you look desperate enough to pay.")],
+         "DOCK WORKER":[("DOCK WORKER","I work nights. I see things people pretend never happened.")],
+         "LOOKOUT":[("LOOKOUT","From up here, the whole district looks innocent. That's the trick.")]}
+        from story import Scene
+        dialogue=[Scene(speaker,line) for speaker,line in lines.get(nearby[0],[])]
+        dialogue_index=0
+        if not dialogue:notify("No one here right now.")
+    elif event.key==pygame.K_h and not paused:
+     if player.cash>=120 and player.hp<100:
+      player.cash-=120;player.hp=min(100,player.hp+45);notify("FIRST AID USED  -$120")
+     else:notify("FIRST AID COSTS $120 — health already full or not enough cash")
+    elif event.key==pygame.K_u and not paused:
+     near_nico=math.dist((1398,738),(player.x,player.y))<115
+     if player.vehicle and near_nico and player.cash>=500 and player.vehicle.max_speed<430:
+      player.cash-=500;player.vehicle.max_speed+=35;notify("ENGINE UPGRADED  -$500")
+     else:notify("GARAGE UPGRADE: be near Nico, in a car, with $500")
     elif event.key==pygame.K_SPACE and player.vehicle:player.vehicle.speed*=0.45
   if not started:
    draw_title(screen);pygame.display.flip();continue
@@ -65,8 +84,8 @@ def main():
    completed=missions.update(player)
    if completed:
     notify(f"MISSION COMPLETE  +$ {completed.reward}")
-    if missions.index in SCENES:dialogue=list(SCENES[missions.index])
-    elif missions.index>=len(missions.missions):dialogue=list(ENDING)
+    if missions.index>=len(missions.missions):dialogue=list(SCENES.get(missions.index-1,[]))+list(ENDING)
+    else:dialogue=list(SCENES.get(missions.index-1,[]))
     dialogue_index=0
    side=missions.update_side(player)
    if side:notify(f"SIDE JOB COMPLETE  +$ {side.reward}")
