@@ -1,0 +1,120 @@
+{
+  "mission_01": [
+    {
+      "speaker": "MAYA",
+      "text": "Vice District. Pretty lights, ugly secrets. You must be Alex."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "I'm looking for my brother. Leo disappeared three weeks ago."
+    },
+    {
+      "speaker": "MAYA",
+      "text": "Then you need to understand this city. Nobody vanishes without someone noticing."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "You said you had a lead."
+    },
+    {
+      "speaker": "MAYA",
+      "text": "I do. But first, prove I can trust you. Take this case to Nico."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "And don't ask what's inside?"
+    },
+    {
+      "speaker": "MAYA",
+      "text": "Now you're learning."
+    }
+  ],
+  "mission_02": [
+    {
+      "speaker": "NICO",
+      "text": "Maya sent you? Put the case there. Carefully. I like my workbench without surprises."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "You worked on Leo's car."
+    },
+    {
+      "speaker": "NICO",
+      "text": "Yeah. Three days before he vanished. He kept checking the mirrors like someone was following him."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "Did he say where he was going?"
+    },
+    {
+      "speaker": "NICO",
+      "text": "No. But he asked me to remove a tracker. I told him that was a terrible idea."
+    }
+  ],
+  "mission_03": [
+    {
+      "speaker": "NICO",
+      "text": "I kept the old repair notes. Didn't think they'd matter."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "This tracker was still active?"
+    },
+    {
+      "speaker": "NICO",
+      "text": "Not active. Sleeping. It woke up twice near the industrial belt."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "Then that's where I'm going."
+    },
+    {
+      "speaker": "NICO",
+      "text": "Take a jacket. Industrial belt eats phones and people."
+    }
+  ],
+  "mission_04": [
+    {
+      "speaker": "VESPER",
+      "text": "You want information. Everyone wants information. The trick is knowing what it's worth."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "I'm looking for a signal tied to a port shipment."
+    },
+    {
+      "speaker": "VESPER",
+      "text": "That's either very boring or very dangerous. Usually both."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "Can you help?"
+    },
+    {
+      "speaker": "VESPER",
+      "text": "Maybe. First tell me: are you paying, trading, or asking a favour?"
+    }
+  ],
+  "mission_05": [
+    {
+      "speaker": "ALEX",
+      "text": "This receiver shouldn't have power."
+    },
+    {
+      "speaker": "MAYA",
+      "text": "But it does. Can you hear that?"
+    },
+    {
+      "speaker": "ALEX",
+      "text": "Three short pulses. Then a pause."
+    },
+    {
+      "speaker": "MAYA",
+      "text": "Leo used to tap that rhythm when he was thinking."
+    },
+    {
+      "speaker": "ALEX",
+      "text": "So this is meant for me."
+    }
+  ]
+}
