@@ -187,7 +187,7 @@ func _show_missions() -> void:
 func _select_mission(mission: Dictionary) -> void:
 	if not is_instance_valid(mission_detail):
 		return
-	var lines := []
+	var lines: PackedStringArray = []
 	lines.append(str(mission.get("briefing", "No briefing available.")))
 	lines.append("Kontakt: " + str(mission.get("contact", "—")) + "   •   Dzielnica: " + str(mission.get("district", "—")))
 	var objectives: Array = mission.get("objectives", [])
@@ -280,7 +280,9 @@ func _start_new_game() -> void:
 	MissionManager.completed_missions.clear()
 	if is_instance_valid(player):
 		player.global_position = Vector3(0, 1, 38)
-		player.velocity = Vector3.ZERO
+		var controlled_body := player as CharacterBody3D
+		if controlled_body:
+			controlled_body.velocity = Vector3.ZERO
 	MissionManager.start_mission("m01")
 	_start_game()
 
@@ -318,6 +320,7 @@ func _set_game_controls_enabled(enabled: bool) -> void:
 		player.set_process_input(enabled)
 	if is_instance_valid(campaign_director):
 		campaign_director.set_process(enabled)
+		campaign_director.set_process_unhandled_input(enabled)
 
 func _save_game() -> void:
 	SaveManager.save_game(player)
