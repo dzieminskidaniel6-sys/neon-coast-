@@ -13,7 +13,7 @@ This pass adds a more complete front end and a stylized art pass while keeping t
 - **Character files:** In-game descriptions explain Alex's search for Leo and Maya's personal secret and changing trust arc.
 - **Coastal environment:** Batched vertex-coloured building meshes with window frames, glass, sills, balconies, roof units and facade accents; plaza, sidewalks, street markings, trees, lamps, boardwalk, beach, water and a neon diner.
 - **Minimap and HUD:** Framed minimap with player heading, objective marker, boardwalk landmark, coastline and street grid; objective and campaign HUD panels.
-- **Performance foundation:** Compatibility renderer, low-cost materials, no realtime shadows, no MSAA/SSAO/SSR, low-poly character primitives and one batched mesh per detailed building. The LOW profile uses a 30 FPS cap and reduced 3D render scale.
+- **Performance foundation:** Compatibility renderer, low-cost materials, no realtime shadows, no MSAA/SSAO/SSR, low-poly character primitives, one indexed mesh for the complete road/sidewalk/marking grid and one indexed mesh per detailed building. Shared materials are cached for world props. The LOW profile uses a 30 FPS cap and reduced 3D render scale.
 
 ## Controls
 
