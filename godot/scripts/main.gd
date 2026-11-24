@@ -227,6 +227,7 @@ func _build_hud() -> void:
 	hint_label.add_theme_font_size_override("font_size", 14)
 	hint_label.add_theme_color_override("font_color", Color(1.0, 0.83, 0.52))
 	layer.add_child(hint_label)
+	hint_label.visible = false
 
 func _add_tree(at: Vector3, scale_factor: float) -> void:
 	var tree := Node3D.new()
