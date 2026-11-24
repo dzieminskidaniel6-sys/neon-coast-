@@ -1,95 +1,67 @@
-# NEON COAST: The Lost Signal — Godot 4 remake
+# NEON COAST: The Lost Signal — Godot 4
 
-## Design documentation
+A third-person coastal-city action/adventure project built with Godot 4 Compatibility renderer. This repository milestone adds the Phase 2 gameplay framework and Phase 3 campaign/content package.
 
-- [Game & Story Bible](docs/GAME_BIBLE.md) — story canon, characters, 20-mission campaign, choices, endings, gameplay systems and production roadmap.\n- [Mission Design 01–05](docs/MISSIONS_01-05.md) — detailed playable design for the first five campaign missions, dialogue beats, choices, flags and acceptance criteria.
-
-
-A lightweight third-person 3D prototype designed for Intel Celeron 4205U, Intel UHD 610 and 4 GB RAM.
-
-## Requirements
-
-- Godot 4.4 or newer (Godot 4.x recommended)
-- Arch Linux / Hyprland
-- OpenGL 3.3-capable graphics driver (Intel i915)
-
-## Install on Arch Linux
-
-```bash
-sudo pacman -Syu
-sudo pacman -S godot mesa
-```
-
-The project uses Godot's **Compatibility** renderer (OpenGL), not Forward+.
-
-## Run
-
-From the repository root:
+## Open and run
+Open the `godot/` folder in Godot 4.7.x, or run from the repository root:
 
 ```bash
 godot --path godot
 ```
 
-If the native Wayland window backend has trouble under Hyprland, try the X11/XWayland backend:
-
-```bash
-godot --display-driver x11 --path godot
-```
-
-If the `godot` command is not found, check the package installation with `pacman -Q godot`.
+The project targets the Compatibility renderer (OpenGL), 960×540 base viewport and a 30 FPS low preset.
 
 ## Controls
-
-- WASD / arrows — move
-- Mouse — rotate third-person camera
+- WASD — move
+- Mouse — camera
 - Shift — sprint
 - Space — jump
-- E — interact with Maya when close
-- Escape — release mouse; click the game window to capture it again
+- E — interact / advance
+- Esc — release mouse
 
-## Performance profile
+## Phase 2 — gameplay systems
+- Persistent game state: cash, inventory, relationships, story flags, evidence and public support.
+- Data-driven mission progression, prerequisites, objectives, rewards and save/load.
+- Dialogue choices with relationship, cash, inventory and story-flag effects.
+- Campaign HUD and lightweight canvas minimap (no extra camera or SubViewport).
+- Vehicle driving controller and garage upgrade registry.
+- Interaction targets and mission trigger volumes.
+- Side-activity progression and rewards.
+- District metadata, district streaming hooks, distance LOD controller and quality profiles.
+- Conditional ending resolver.
 
-- 960×540 internal window
-- Compatibility renderer
-- No real-time shadows
-- No volumetric fog, SSAO, SSR or glow
-- Primitive low-poly meshes and small material count
-- Static city blockout and simple collision\n- No per-pixel/point lights; street lamps are emissive meshes\n- Simple procedural NPC meshes and labels
+## Phase 3 — content package
+- 20 main mission definitions across five chapters.
+- Seven named districts plus the outskirts.
+- Ten side activities.
+- Five conditional endings.
+- Character dialogue scenes for Maya, Nico, Vesper, Leo and Adrian Vale.
+- Campaign content lock, character/world asset pipeline and performance plan.
 
-The current build includes a larger 7×7 street grid, a central plaza, a boardwalk diner frontage, simple low-poly trees and street lamps, three named NPCs, Maya's first interaction, and a lightweight day/night cycle. Character facing is separated from camera yaw so walking forward does not rotate the camera. This remains an early blockout: NPCs are static, cars are decorative, and the campaign, vehicle driving, save/load and mission chains are not implemented yet.
+## Graphics direction
+Stylized realism with human-proportioned characters, expressive faces, hair, layered clothing and a shared animation skeleton. The current capsule/sphere people are temporary blockout placeholders. The import-ready character wrapper is in `scripts/characters/character_visual.gd`; the final cast still needs authored GLB models, rigs, materials and animation clips.
 
-## Troubleshooting
+## Low-end hardware target
+Primary baseline: Intel Celeron 4205U, Intel UHD Graphics 610 and 4 GB RAM.
+- Compatibility renderer, no mandatory real-time shadows, no MSAA on Low.
+- Shared materials, modular buildings, simple collision and bounded simulation.
+- Distance LOD and district chunk activation foundations.
+- Target 30 FPS on Low is a design goal, not a measured guarantee.
+- Avoid mandatory SSAO, SSR, volumetric fog, depth of field and heavy post-processing.
 
-Run from a terminal to keep errors visible:
+See `docs/GRAPHICS_AND_PERFORMANCE_PIPELINE.md` for asset budgets and profiling guidance.
 
-```bash
-godot --path godot --verbose
-```
+## Important status
+This is a systems-and-content milestone, not a finished, runtime-verified game. The current playable city is still a procedural blockout. The first Maya interaction and opening dialogue are wired into the scene. Later missions and side activities have data and reusable managers, but still need authored district scenes, world trigger placements, complete NPC interactions, vehicle scenes, audio, final character art and a full QA pass in Godot.
 
-Under Hyprland, make sure the Intel `i915` driver and Mesa OpenGL userspace are installed. Do not force Vulkan or Forward+ on this low-end machine.
-
-
-## Production documentation
-
-- [Production master plan](docs/PRODUCTION_MASTER_PLAN.md) — full campaign, districts, systems, quality gates and performance targets.
-- [Final human character art brief](docs/CHARACTER_ART_BRIEF.md) — Alex, story cast, humanoid NPC pipeline and animation requirements.
-- [Campaign data](data/campaign.json) — structured index of all 20 main missions.
-
-## Gameplay systems foundation
-
-The project now includes reusable autoload services:
-- `GameState` — cash, inventory, relationships and story flags.
-- `MissionManager` — campaign loading, prerequisites, objectives, rewards and completion.
-- `DialogueManager` — data-driven dialogue lines, choices and effects.
-- `SaveManager` — versioned JSON save/load.
-
-Gameplay components:
-- `NeonInteractable` — reusable proximity-based interaction area.
-- `NeonNPCAgent` — lightweight bounded NPC wandering behaviour.
-- `NeonVehicleController` — basic arcade vehicle movement controller.
-
-These are system foundations, not yet fully connected to the HUD, current city scene, final dialogue UI or all 20 mission spaces. Runtime validation is still required on the target laptop.
-
-- [Character arcs and dialogue](docs/CHARACTER_ARCS_AND_DIALOGUE.md) — full cast arcs, dialogue rules and draft ending conditions.
-- [Side activities](data/side_activities.json) — ten optional activities across the districts.
-- [Opening dialogue reference](data/dialogue_opening.json) — dialogue beats for the first five missions.
+## Documentation
+- `docs/GAME_BIBLE.md` — story canon and game direction.
+- `docs/CAMPAIGN_CONTENT_LOCK.md` — campaign structure and character arcs.
+- `docs/GRAPHICS_AND_PERFORMANCE_PIPELINE.md` — rendering, assets and performance.
+- `docs/CHARACTER_AND_WORLD_ASSET_PIPELINE.md` — human models and environment pipeline.
+- `docs/BUILD_AND_HANDOFF.md` — controls, run instructions and milestone boundaries.
+- `data/campaign.json` — 20 main missions.
+- `data/districts.json` — district definitions.
+- `data/side_activities_v2.json` — ten side activities.
+- `data/dialogue_campaign.json` — dialogue and choice effects.
+- `data/endings.json` — five ending conditions.
