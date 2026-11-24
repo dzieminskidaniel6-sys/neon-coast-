@@ -67,3 +67,25 @@ godot --path godot --verbose
 ```
 
 Under Hyprland, make sure the Intel `i915` driver and Mesa OpenGL userspace are installed. Do not force Vulkan or Forward+ on this low-end machine.
+
+
+## Production documentation
+
+- [Production master plan](docs/PRODUCTION_MASTER_PLAN.md) — full campaign, districts, systems, quality gates and performance targets.
+- [Final human character art brief](docs/CHARACTER_ART_BRIEF.md) — Alex, story cast, humanoid NPC pipeline and animation requirements.
+- [Campaign data](data/campaign.json) — structured index of all 20 main missions.
+
+## Gameplay systems foundation
+
+The project now includes reusable autoload services:
+- `GameState` — cash, inventory, relationships and story flags.
+- `MissionManager` — campaign loading, prerequisites, objectives, rewards and completion.
+- `DialogueManager` — data-driven dialogue lines, choices and effects.
+- `SaveManager` — versioned JSON save/load.
+
+Gameplay components:
+- `NeonInteractable` — reusable proximity-based interaction area.
+- `NeonNPCAgent` — lightweight bounded NPC wandering behaviour.
+- `NeonVehicleController` — basic arcade vehicle movement controller.
+
+These are system foundations, not yet fully connected to the HUD, current city scene, final dialogue UI or all 20 mission spaces. Runtime validation is still required on the target laptop.
