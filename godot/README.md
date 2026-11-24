@@ -16,7 +16,9 @@ The project targets the Compatibility renderer (OpenGL), 960×540 base viewport 
 - Mouse — camera
 - Shift — sprint
 - Space — jump
-- E — interact / advance
+- E — interact / advance / enter or exit vehicle
+- F5 — save
+- F9 — load
 - Esc — release mouse
 
 ## Phase 2 — gameplay systems
