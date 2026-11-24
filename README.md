@@ -66,3 +66,7 @@ python main.py
 
 ## Current scope
 This is a playable foundation and expanding campaign, not a finished commercial release. Mission flow, performance and save compatibility should be tested on the target laptop before calling it release-ready.
+
+
+## 3D remake (Godot 4)
+A separate low-poly third-person 3D remake is being developed in the `godot/` directory. It uses the Compatibility renderer for Intel UHD integrated graphics. See [godot/README.md](godot/README.md) for Arch Linux and Hyprland setup and launch instructions.
