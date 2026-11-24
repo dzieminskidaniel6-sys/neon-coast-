@@ -1,0 +1,446 @@
+{
+  "campaign": "The Lost Signal",
+  "version": 1,
+  "missions": [
+    {
+      "id": "m01",
+      "title": "A Stranger in Town",
+      "district": "boardwalk",
+      "objectives": [
+        {
+          "id": "m01_o1",
+          "text": "Meet Maya outside the diner"
+        },
+        {
+          "id": "m01_o2",
+          "text": "Hear Maya's lead"
+        },
+        {
+          "id": "m01_o3",
+          "text": "Accept the sealed case"
+        }
+      ],
+      "reward": 0,
+      "sets_flag": "case_received",
+      "requires": ""
+    },
+    {
+      "id": "m02",
+      "title": "The First Package",
+      "district": "old_quarter",
+      "objectives": [
+        {
+          "id": "m02_o1",
+          "text": "Take the case to Nico's garage"
+        },
+        {
+          "id": "m02_o2",
+          "text": "Talk to Nico about Leo"
+        },
+        {
+          "id": "m02_o3",
+          "text": "Ask about the last vehicle repair"
+        }
+      ],
+      "reward": 120,
+      "sets_flag": "nico_met",
+      "requires": "m01"
+    },
+    {
+      "id": "m03",
+      "title": "Old Engine, New Lies",
+      "district": "old_quarter",
+      "objectives": [
+        {
+          "id": "m03_o1",
+          "text": "Inspect Leo's old repair record"
+        },
+        {
+          "id": "m03_o2",
+          "text": "Recover the vehicle tracker"
+        },
+        {
+          "id": "m03_o3",
+          "text": "Bring the tracker to Nico"
+        }
+      ],
+      "reward": 180,
+      "sets_flag": "tracker_found",
+      "requires": "m02"
+    },
+    {
+      "id": "m04",
+      "title": "Market After Dark",
+      "district": "night_market",
+      "objectives": [
+        {
+          "id": "m04_o1",
+          "text": "Find the technician"
+        },
+        {
+          "id": "m04_o2",
+          "text": "Locate Vesper"
+        },
+        {
+          "id": "m04_o3",
+          "text": "Choose how to obtain the frequency details"
+        }
+      ],
+      "reward": 220,
+      "sets_flag": "vesper_contact",
+      "requires": "m03"
+    },
+    {
+      "id": "m05",
+      "title": "Static on the Line",
+      "district": "industrial_belt",
+      "objectives": [
+        {
+          "id": "m05_o1",
+          "text": "Reach the relay station"
+        },
+        {
+          "id": "m05_o2",
+          "text": "Restore power to the receiver"
+        },
+        {
+          "id": "m05_o3",
+          "text": "Record the unknown signal"
+        }
+      ],
+      "reward": 260,
+      "sets_flag": "signal_recorded",
+      "requires": "m04"
+    },
+    {
+      "id": "m06",
+      "title": "The Wrong Address",
+      "district": "old_quarter",
+      "objectives": [
+        {
+          "id": "m06_o1",
+          "text": "Decode the first location"
+        },
+        {
+          "id": "m06_o2",
+          "text": "Search the abandoned apartment"
+        },
+        {
+          "id": "m06_o3",
+          "text": "Find the blue-lantern note"
+        }
+      ],
+      "reward": 280,
+      "sets_flag": "blue_lantern_clue",
+      "requires": "m05"
+    },
+    {
+      "id": "m07",
+      "title": "Debt Collectors",
+      "district": "marina",
+      "objectives": [
+        {
+          "id": "m07_o1",
+          "text": "Reach the marina"
+        },
+        {
+          "id": "m07_o2",
+          "text": "Deal with the people asking about the tracker"
+        },
+        {
+          "id": "m07_o3",
+          "text": "Escape with the copied data"
+        }
+      ],
+      "reward": 320,
+      "sets_flag": "marina_data",
+      "requires": "m06"
+    },
+    {
+      "id": "m08",
+      "title": "A Friend in Need",
+      "district": "old_quarter",
+      "objectives": [
+        {
+          "id": "m08_o1",
+          "text": "Find Nico's missing tool case"
+        },
+        {
+          "id": "m08_o2",
+          "text": "Recover it from the storage yard"
+        },
+        {
+          "id": "m08_o3",
+          "text": "Return it to Nico"
+        }
+      ],
+      "reward": 300,
+      "sets_flag": "nico_helped",
+      "requires": "m07"
+    },
+    {
+      "id": "m09",
+      "title": "Ghost Frequency",
+      "district": "industrial_belt",
+      "objectives": [
+        {
+          "id": "m09_o1",
+          "text": "Tune the receiver to the recorded frequency"
+        },
+        {
+          "id": "m09_o2",
+          "text": "Trace the hidden data burst"
+        },
+        {
+          "id": "m09_o3",
+          "text": "Recover the encrypted transmitter"
+        }
+      ],
+      "reward": 360,
+      "sets_flag": "transmitter_found",
+      "requires": "m08"
+    },
+    {
+      "id": "m10",
+      "title": "The Harbor Files",
+      "district": "downtown",
+      "objectives": [
+        {
+          "id": "m10_o1",
+          "text": "Reach the records building"
+        },
+        {
+          "id": "m10_o2",
+          "text": "Choose an entry route"
+        },
+        {
+          "id": "m10_o3",
+          "text": "Copy the Harbor Authority manifest"
+        }
+      ],
+      "reward": 420,
+      "sets_flag": "harbor_manifest",
+      "requires": "m09"
+    },
+    {
+      "id": "m11",
+      "title": "No Safe Route",
+      "district": "boardwalk",
+      "objectives": [
+        {
+          "id": "m11_o1",
+          "text": "Meet Maya at the safe location"
+        },
+        {
+          "id": "m11_o2",
+          "text": "Decide who holds the original evidence"
+        },
+        {
+          "id": "m11_o3",
+          "text": "Deliver a protected copy"
+        }
+      ],
+      "reward": 400,
+      "sets_flag": "evidence_custody_chosen",
+      "requires": "m10"
+    },
+    {
+      "id": "m12",
+      "title": "Night Shift",
+      "district": "harbor",
+      "objectives": [
+        {
+          "id": "m12_o1",
+          "text": "Find the night-shift worker"
+        },
+        {
+          "id": "m12_o2",
+          "text": "Earn or obtain their testimony"
+        },
+        {
+          "id": "m12_o3",
+          "text": "Record the shipment description"
+        }
+      ],
+      "reward": 440,
+      "sets_flag": "worker_testimony",
+      "requires": "m11"
+    },
+    {
+      "id": "m13",
+      "title": "The Watcher",
+      "district": "downtown",
+      "objectives": [
+        {
+          "id": "m13_o1",
+          "text": "Reach the rooftop lookout"
+        },
+        {
+          "id": "m13_o2",
+          "text": "Identify the watcher"
+        },
+        {
+          "id": "m13_o3",
+          "text": "Choose whether to recruit or expose them"
+        }
+      ],
+      "reward": 480,
+      "sets_flag": "watcher_resolved",
+      "requires": "m12"
+    },
+    {
+      "id": "m14",
+      "title": "Deep Storage",
+      "district": "harbor",
+      "objectives": [
+        {
+          "id": "m14_o1",
+          "text": "Locate the concealed storage bay"
+        },
+        {
+          "id": "m14_o2",
+          "text": "Search the shipment records"
+        },
+        {
+          "id": "m14_o3",
+          "text": "Recover Leo's personal item"
+        }
+      ],
+      "reward": 520,
+      "sets_flag": "leo_item_found",
+      "requires": "m13"
+    },
+    {
+      "id": "m15",
+      "title": "The Second Key",
+      "district": "night_market",
+      "objectives": [
+        {
+          "id": "m15_o1",
+          "text": "Meet Vesper"
+        },
+        {
+          "id": "m15_o2",
+          "text": "Settle or renegotiate the information debt"
+        },
+        {
+          "id": "m15_o3",
+          "text": "Obtain the second access key"
+        }
+      ],
+      "reward": 500,
+      "sets_flag": "second_key",
+      "requires": "m14"
+    },
+    {
+      "id": "m16",
+      "title": "Port of No Return",
+      "district": "industrial_belt",
+      "objectives": [
+        {
+          "id": "m16_o1",
+          "text": "Prepare a vehicle with Nico"
+        },
+        {
+          "id": "m16_o2",
+          "text": "Secure a port access pass"
+        },
+        {
+          "id": "m16_o3",
+          "text": "Choose the support contact"
+        }
+      ],
+      "reward": 600,
+      "sets_flag": "port_plan_ready",
+      "requires": "m15"
+    },
+    {
+      "id": "m17",
+      "title": "Break the Chain",
+      "district": "harbor",
+      "objectives": [
+        {
+          "id": "m17_o1",
+          "text": "Reach the relay control point"
+        },
+        {
+          "id": "m17_o2",
+          "text": "Disable the shipment alert"
+        },
+        {
+          "id": "m17_o3",
+          "text": "Leave before the security sweep"
+        }
+      ],
+      "reward": 650,
+      "sets_flag": "security_blind_spot",
+      "requires": "m16"
+    },
+    {
+      "id": "m18",
+      "title": "The Last Witness",
+      "district": "canal",
+      "objectives": [
+        {
+          "id": "m18_o1",
+          "text": "Find the witness by the canal"
+        },
+        {
+          "id": "m18_o2",
+          "text": "Protect them or pursue the moving lead"
+        },
+        {
+          "id": "m18_o3",
+          "text": "Secure the final location clue"
+        }
+      ],
+      "reward": 700,
+      "sets_flag": "last_witness",
+      "requires": "m17"
+    },
+    {
+      "id": "m19",
+      "title": "Brother's Trail",
+      "district": "outskirts",
+      "objectives": [
+        {
+          "id": "m19_o1",
+          "text": "Follow the final GPS trace"
+        },
+        {
+          "id": "m19_o2",
+          "text": "Search the abandoned service site"
+        },
+        {
+          "id": "m19_o3",
+          "text": "Listen to Leo's recorded message"
+        }
+      ],
+      "reward": 750,
+      "sets_flag": "leo_message",
+      "requires": "m18"
+    },
+    {
+      "id": "m20",
+      "title": "The Lost Signal",
+      "district": "harbor",
+      "objectives": [
+        {
+          "id": "m20_o1",
+          "text": "Reach Leo's location"
+        },
+        {
+          "id": "m20_o2",
+          "text": "Choose what to do with the evidence"
+        },
+        {
+          "id": "m20_o3",
+          "text": "Resolve the confrontation and determine the ending"
+        }
+      ],
+      "reward": 1000,
+      "sets_flag": "campaign_finished",
+      "requires": "m19"
+    }
+  ]
+}
