@@ -49,9 +49,9 @@ If the `godot` command is not found, check the package installation with `pacman
 - No real-time shadows
 - No volumetric fog, SSAO, SSR or glow
 - Primitive low-poly meshes and small material count
-- Static city blockout and simple collision
+- Static city blockout and simple collision\n- No per-pixel/point lights; street lamps are emissive meshes\n- Simple procedural NPC meshes and labels
 
-This is the first playable vertical slice, not the finished campaign. It establishes third-person movement, camera, a starter district, HUD and the first story interaction. Vehicles, save/load, combat, mission chains and the larger city are planned follow-up systems.
+The current build includes a larger 7×7 street grid, a central plaza, a boardwalk diner frontage, simple low-poly trees and street lamps, three named NPCs, Maya's first interaction, and a lightweight day/night cycle. Character facing is separated from camera yaw so walking forward does not rotate the camera. This remains an early blockout: NPCs are static, cars are decorative, and the campaign, vehicle driving, save/load and mission chains are not implemented yet.
 
 ## Troubleshooting
 
