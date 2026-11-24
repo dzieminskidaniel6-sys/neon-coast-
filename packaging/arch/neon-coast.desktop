@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=NEON COAST: The Lost Signal
+GenericName=Coastal Story Adventure
+Comment=Explore the coast and uncover the lost signal
+Exec=neon-coast
+Icon=neon-coast
+Terminal=false
+Categories=Game;AdventureGame;
+Keywords=neon;coast;adventure;story;godot;
+StartupNotify=true
+StartupWMClass=NEON-COAST
