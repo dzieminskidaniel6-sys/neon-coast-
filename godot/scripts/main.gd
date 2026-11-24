@@ -1,6 +1,7 @@
 extends Node3D
 
 const PLAYER_SCRIPT = preload("res://scripts/player.gd")
+const VEHICLE_SCENE = preload("res://scenes/vehicles/coast_compact.tscn")
 const CITY_HALF_SIZE := 105.0
 const DAY_LENGTH_SECONDS := 480.0
 
@@ -18,6 +19,7 @@ var mission_text := "Find Maya near the boardwalk diner"
 func _ready() -> void:
 	_build_environment()
 	_build_city()
+	_build_vehicles()
 	_build_npcs()
 	_build_objective()
 	_build_player()
@@ -116,7 +118,7 @@ func _build_city() -> void:
 	_add_box("Boardwalk", Vector3(0, 0.02, 58), Vector3(42, 0.12, 13), Color(0.34, 0.27, 0.20), false)
 	_add_box("Diner_Front", Vector3(0, 2.0, 68), Vector3(16, 4.0, 5), Color(0.25, 0.16, 0.20), true)
 	_add_box("Diner_Sign", Vector3(0, 4.1, 65.42), Vector3(7, 0.8, 0.12), Color(0.05, 0.72, 0.82), false)
-	_add_box("ParkedCar_Red", Vector3(-7, 0.9, 52), Vector3(2.1, 1.2, 4.0), Color(0.72, 0.12, 0.22), false)
+	# Red car is now a drivable scene spawned by _build_vehicles().
 	_add_box("ParkedCar_Blue", Vector3(7, 0.9, 52), Vector3(2.1, 1.2, 4.0), Color(0.12, 0.38, 0.72), false)
 	for x in [-18.0, -12.0, 12.0, 18.0]:
 		_add_tree(Vector3(x, 0.0, 61.0), 0.8)
@@ -134,6 +136,11 @@ func _build_city() -> void:
 		_add_box("Distant_Skyline", Vector3(x_pos, tower_height * 0.5, -116.0), Vector3(tower_width, tower_height, 9.0), tower_color, false)
 		if i % 3 == 1:
 			_add_box("Skyline_Rooftop", Vector3(x_pos, tower_height + 1.5, -116.0), Vector3(tower_width * 0.42, 3.0, 9.2), tower_color.lightened(0.08), false)
+
+func _build_vehicles() -> void:
+	var vehicle = VEHICLE_SCENE.instantiate()
+	vehicle.position = Vector3(-7, 0.0, 52)
+	add_child(vehicle)
 
 func _build_npcs() -> void:
 	_create_npc("Maya", Vector3(5, 0, 48), Color(0.72, 0.18, 0.42), Color(0.88, 0.66, 0.52), true)
