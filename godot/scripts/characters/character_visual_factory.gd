@@ -113,7 +113,6 @@ static func _add_cylinder(root: Node3D, node_name: String, at: Vector3, top: flo
 	mesh.top_radius = top
 	mesh.bottom_radius = bottom
 	mesh.height = height
-	mesh.radial_segments = 12
 	node.mesh = mesh
 	node.position = at
 	node.material_override = _material(color)
