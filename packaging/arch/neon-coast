@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+APP_DIR="/opt/neon-coast"
+GAME="$APP_DIR/NEON-COAST.x86_64"
+
+if [[ ! -x "$GAME" ]]; then
+  printf 'NEON COAST executable not found: %s\n' "$GAME" >&2
+  exit 1
+fi
+
+cd "$APP_DIR"
+exec "$GAME" "$@"
