@@ -276,6 +276,9 @@ func _close_modal() -> void:
 		info_panel.visible = true
 
 func _start_new_game() -> void:
+	DialogueManager.cancel_dialogue()
+	if is_instance_valid(campaign_director):
+		campaign_director.opening_dialogue_started = false
 	GameState.cash = 250
 	GameState.story_flags.clear()
 	GameState.relationships = {"maya": 0, "nico": 0, "vesper": 0, "leo": 0}
@@ -313,6 +316,7 @@ func _start_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _return_to_title() -> void:
+	DialogueManager.cancel_dialogue()
 	_game_started = false
 	get_tree().paused = true
 	modal_panel.visible = false
