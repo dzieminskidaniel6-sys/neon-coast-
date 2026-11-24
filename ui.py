@@ -10,20 +10,20 @@ def text(surf,msg,pos,size=20,color=WHITE,bold=False):
 def draw_hud(surf,player,mission,wanted,show_map=True):
     panel=pygame.Surface((290,112),pygame.SRCALPHA); panel.fill((8,14,25,220))
     surf.blit(panel,(18,18))
-    text(surf,"NEON COAST",32,27,22,CYAN,True)
-    text(surf,f"HP  {player.hp:03d}",32,58,17,GREEN,True)
-    text(surf,f"CASH  $ {player.cash:,}",32,82,17,YELLOW,True)
+    text(surf,"NEON COAST",(32,27),22,CYAN,True)
+    text(surf,f"HP  {player.hp:03d}",(32,58),17,GREEN,True)
+    text(surf,f"CASH  $ {player.cash:,}",(32,82),17,YELLOW,True)
     if mission:
         box=pygame.Surface((390,90),pygame.SRCALPHA); box.fill((8,14,25,220))
         surf.blit(box,(WIDTH-410,18))
-        text(surf,"CURRENT JOB",WIDTH-392,29,14,PINK,True)
-        text(surf,mission.title,WIDTH-392,50,20,WHITE,True)
-        text(surf,mission.description,WIDTH-392,76,14,MUTED)
+        text(surf,"CURRENT JOB",(WIDTH-392,29),14,PINK,True)
+        text(surf,mission.title,(WIDTH-392,50),20,WHITE,True)
+        text(surf,mission.description,(WIDTH-392,76),14,MUTED)
     if wanted:
-        text(surf,"★"*wanted,WIDTH//2-40,25,27,RED,True)
+        text(surf,"★"*wanted,(WIDTH//2-40,25),27,RED,True)
     if player.vehicle:
-        text(surf,f"{abs(int(player.vehicle.speed))} KM/H",WIDTH-180,HEIGHT-55,25,CYAN,True)
-    text(surf,"WASD MOVE  ·  E ENTER/EXIT  ·  SHIFT SPRINT  ·  ESC PAUSE",20,HEIGHT-30,14,MUTED)
+        text(surf,f"{abs(int(player.vehicle.speed))} KM/H",(WIDTH-180,HEIGHT-55),25,CYAN,True)
+    text(surf,"WASD MOVE  ·  E ENTER/EXIT  ·  SHIFT SPRINT  ·  ESC PAUSE",(20,HEIGHT-30),14,MUTED)
 
 def draw_minimap(surf,player,world,mission):
     size=170; x=WIDTH-size-22; y=HEIGHT-size-24
