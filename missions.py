@@ -9,11 +9,11 @@ class Mission:
 class MissionManager:
  def __init__(self):
   self.missions=[
-   Mission("01 | FIRST IMPRESSION","Deliver Maya's case to the pier.",(2780,390),350),
-   Mission("02 | OLD FRIENDS","Meet Nico at the downtown garage.",(1600,1770),500),
-   Mission("03 | THE NIGHT MARKET","Find Vesper near the beach lookout.",(360,2050),650),
-   Mission("04 | GHOST SIGNAL","Recover Leo's data drive at the observatory.",(2780,2050),800),
-   Mission("05 | THE PORT","Reach the container terminal.",(1600,390),1200)]
+   Mission("01 | FIRST IMPRESSION","Deliver Maya's case to the pier.",(2820,245),350),
+   Mission("02 | OLD FRIENDS","Meet Nico at the downtown garage.",(1780,715),500),
+   Mission("03 | THE NIGHT MARKET","Find Vesper near the beach lookout.",(740,1185),650),
+   Mission("04 | GHOST SIGNAL","Recover Leo's data drive at the observatory.",(2820,1655),800),
+   Mission("05 | THE PORT","Reach the container terminal.",(1780,2125),1200)]
   self.index=0; self.free_roam=False
  @property
  def current(self): return self.missions[self.index] if self.index<len(self.missions) else None
