@@ -49,6 +49,17 @@ func select_choice(choice_index: int) -> bool:
 		_emit_line()
 	return true
 
+
+func cancel_dialogue() -> void:
+	## Close any active conversation cleanly when starting a fresh campaign.
+	var was_running := is_running
+	is_running = false
+	waiting_for_choice = false
+	_lines.clear()
+	_line_index = -1
+	if was_running:
+		dialogue_finished.emit()
+
 func _emit_line() -> void:
 	var entry := _lines[_line_index]
 	dialogue_started.emit(str(entry.get("speaker", "UNKNOWN")), str(entry.get("text", "")))
