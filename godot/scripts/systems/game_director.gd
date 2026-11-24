@@ -30,7 +30,17 @@ func _process(_delta: float) -> void:
 	_update_hud()
 	if not is_instance_valid(player) or not is_instance_valid(objective): return
 	var close:=player.global_position.distance_to(objective.global_position)<=4.5
-	prompt.text="E  INTERACT" if close else "Find the marked contact"
+	var near_vehicle:=false
+	var vehicle_candidate: Node
+	for vehicle in get_tree().get_nodes_in_group("vehicles"):
+		if vehicle is Node3D and player.global_position.distance_to(vehicle.global_position)<=4.0:
+			near_vehicle=true
+			vehicle_candidate=vehicle
+			break
+	prompt.text="E  DRIVE" if near_vehicle else "E  INTERACT" if close else "Find the marked contact"
+	if near_vehicle and Input.is_action_just_pressed("interact") and not DialogueManager.is_running:
+		vehicle_candidate.enter_vehicle(player)
+		return
 	if close and Input.is_action_just_pressed("interact") and not DialogueManager.is_running:
 		if not opening_dialogue_started and dialogue_data.has("maya_opening"):
 			opening_dialogue_started=true
@@ -109,3 +119,10 @@ func _on_mission_completed(mission: Dictionary) -> void:
 
 func _start_next_mission() -> void:
 	MissionManager.start_next_available()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("save_game"):
+		SaveManager.save_game(player)
+	elif event.is_action_pressed("load_game"):
+		SaveManager.load_game(player)
+		_update_hud()
