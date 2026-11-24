@@ -64,11 +64,11 @@ interact={
 }
 save_game={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":4194326)]
+"events": [Object(InputEventKey,"physical_keycode":4194336)]
 }
 load_game={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":4194328)]
+"events": [Object(InputEventKey,"physical_keycode":4194340)]
 }
 jump={
 "deadzone": 0.2,
